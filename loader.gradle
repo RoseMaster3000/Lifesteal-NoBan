@@ -130,8 +130,8 @@ dependencies {
     def mcVersion = rootProject.hasProperty('common_networking_mc_version') ? "${common_networking_mc_version}" : "${minecraft_version}"
     modApi(include("mysticdrew:common-networking-${loomPlatform}:${common_networking_version}-${mcVersion}"))
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-${loomPlatform}:${jei_version}")
+    modApi(include("maven.modrinth:indestructible-blocks:ZjCRrRvH"))
 
-    modApi(include("mc.mian:indestructible_blocks:${indestructible_blocks_version}+${minecraft_version}-${loomPlatform}"))
 
     if(loomPlatform != 'forge'){
         modApi(include("fuzs.forgeconfigapiport:forgeconfigapiport-${loomPlatform}:${forge_config_api_port_version}"))
