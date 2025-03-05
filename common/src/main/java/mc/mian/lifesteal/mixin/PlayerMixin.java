@@ -151,6 +151,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                     // you are weak / protected player! No health drop!
                     int currentHealth = (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
                     if (weakPlayerThreshold >= currentHealth) {
+                        ((ServerPlayer)killedEntity).displayClientMessage(Component.translatable("gui.lifesteal.weak_player_death"), true);
                         return;
                     }
 

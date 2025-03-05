@@ -39,6 +39,7 @@
   "gui.lifesteal.already_revived": "This player is already alive",
   "gui.lifesteal.cant_withdraw_less_than_amount_have": "You don't have enough hearts to justify this withdrawal",
   "gui.lifesteal.cant_withdraw_less_than_maximum": "You can't withdraw over the maximum amount of hearts you can lose",
+  "gui.lifesteal.weak_player_death": "You have very little HP, so you will not lose/drop any hearts :)",
   "gui.lifesteal.crystal_core_at_max_health": "You are already at max health",
   "gui.lifesteal.crystal_core_disabled": "Crystal Cores have been disabled in the configurations",
   "gui.lifesteal.error_revive_block": "This player was unable to be revived",

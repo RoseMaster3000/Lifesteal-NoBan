@@ -78,6 +78,8 @@ public class LSLangProvider extends LanguageProvider {
         addGuiMessage("heart_crystal_reaching_max", "You are already at the max amount of hearts");
         addGuiMessage("crystal_core_at_max_health", "You are already at max health");
         addGuiMessage("cant_withdraw_less_than_maximum", "You can't withdraw over the maximum amount of hearts you can lose");
+        addGuiMessage("weak_player_death", "You have very little HP, so you will not lose/drop any hearts :)");
+        
         addGuiMessage("invaild_revive_block", "You need to right click a specified player's revive head to revive them");
         addGuiMessage("null_revive_block", "This revive head doesn't have a player assigned to it. Did you grab this out of creative mode?");
         addGuiMessage("error_revive_block", "This player was unable to be revived");

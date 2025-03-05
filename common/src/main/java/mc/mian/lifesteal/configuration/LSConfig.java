@@ -67,7 +67,6 @@ public class LSConfig {
         this.loseHeartsWhenKilledByMob = buildBoolean(builder, "Lose heart(s) when killed by a mob:", true, "Determines if players should lose hearts when killed by mobs");
         this.loseHeartsWhenKilledByEnvironment = buildBoolean(builder, "Lose heart(s) when killed by the environment:", true, "Determines if players lose hearts when killed by the environment. (Lava, fall damage, etc)");
         this.weakPlayerThreshold = buildInt(builder, "Weak player threshold:", -20, -20, Integer.MAX_VALUE, "Inclusive threshold where players are considered weak & do not lose hearts; -20 disables this feature.");
-
         builder.pop();
 
         builder.comment("Settings for Items and Blocks");
