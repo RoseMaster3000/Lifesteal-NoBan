@@ -1,7 +1,11 @@
 <img src="https://i.imgur.com/rvnyecq.png">
 
-# Lifesteal
-**....is a Minecraft mod inspired by the original Lifesteal SMP plugin where killing other players steals their hearts for your own gain**
+# 🌹 RoseMaster's Fork
+
+I made this fork so that weak players do not lose or drop any hearts. This prevent bullying, farming, potential heart dupe exploits. This has been added to the config as `Weak players do not drop/lose hearts when they die`; set this to -20 if you want to disable this feature (Since players at -20 are already dead, setting it to -20 effectively disables the feature) I also made withdrawn hearts have the players name on it, unnatural hearts felt weird.
+
+# 💔 Lifesteal
+Lifesteal is a Minecraft mod inspired by the original Lifesteal SMP plugin where killing other players steals their hearts for your own gain**
 
 ***This mod may be used in any modpack.***
 

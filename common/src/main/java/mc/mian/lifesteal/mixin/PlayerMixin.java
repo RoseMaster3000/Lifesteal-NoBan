@@ -74,6 +74,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final boolean loseHeartsWhenKilledByPlayer = LifeSteal.config.loseHeartsWhenKilledByPlayer.get();
         final boolean loseHeartsWhenKilledByMob = LifeSteal.config.loseHeartsWhenKilledByMob.get();
         final boolean loseHeartsWhenKilledByEnvironment = LifeSteal.config.loseHeartsWhenKilledByEnvironment.get();
+        final int weakPlayerThreshold = LifeSteal.config.weakPlayerThreshold.get();
 
         LivingEntity killedEntity = this;
 
@@ -147,7 +148,17 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                         return;
                     }
 
-                    lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE,(int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE) - amountOfHealthLostUponLoss);
+                    // you are weak / protected player! No health drop!
+                    int currentHealth = (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+                    if (weakPlayerThreshold >= currentHealth) {
+                        return;
+                    }
+
+                    lifestealData.setValue(
+                        LSConstants.HEALTH_DIFFERENCE,
+                        currentHealth - amountOfHealthLostUponLoss
+                    );
+
                     lifestealData.refreshHealth(false);
                     if (LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
                         LSUtil.ripHeartCrystalFromPlayer(killedEntity);
