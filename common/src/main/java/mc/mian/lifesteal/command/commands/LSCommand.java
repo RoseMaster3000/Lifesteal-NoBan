@@ -134,7 +134,9 @@ public class LSCommand {
 
             ItemStack heartCrystal = new ItemStack(LSItems.HEART_CRYSTAL.get(), amount);
             heartCrystal.set(LSDataComponents.UNFRESH.get(), true);
-            heartCrystal.set(DataComponents.CUSTOM_NAME, Component.translatable("item.lifesteal.heart_crystal.unnatural"));
+
+
+            heartCrystal.set(DataComponents.CUSTOM_NAME, Component.translatable("item.lifesteal.heart_crystal.named", serverPlayer.getName().getString()));
             boolean given = serverPlayer.getInventory().add(heartCrystal);
             if (!given) {
                 serverPlayer.drop(heartCrystal, false);
