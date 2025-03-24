@@ -271,13 +271,17 @@ public class LSUtil {
     }
 
     public static void ripHeartCrystalFromPlayer(LivingEntity killedPlayer) {
-        ItemStack itemStack = new ItemStack(LSItems.HEART_CRYSTAL.get());
-        itemStack.set(LSDataComponents.RIPPED.get(), true);
-        itemStack.set(LSDataComponents.UNFRESH.get(), true);
-        itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.lifesteal.heart_crystal.named", killedPlayer.getName().getString()));
+        ripHeartCrystalFromPlayer(killedPlayer, 1);
+    }
 
-        ServerPlayer serverPlayer = (ServerPlayer) killedPlayer;
-        serverPlayer.drop(itemStack, true, false);
+    public static void ripHeartCrystalFromPlayer(LivingEntity killedPlayer, int heartCount) {
+        if (killedPlayer instanceof ServerPlayer serverPlayer) {
+            ItemStack itemStack = new ItemStack(LSItems.HEART_CRYSTAL.get(), heartCount);
+            itemStack.set(LSDataComponents.RIPPED.get(), true);
+            itemStack.set(LSDataComponents.UNFRESH.get(), true);
+            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.lifesteal.heart_crystal.named", killedPlayer.getName().getString()));
+            serverPlayer.drop(itemStack, true, false);
+        }
     }
 
     public static boolean isMultiplayer(MinecraftServer server, boolean excludeLan){

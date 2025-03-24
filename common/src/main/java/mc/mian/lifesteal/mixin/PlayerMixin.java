@@ -68,6 +68,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
 
         final int maximumheartsLoseable = LifeSteal.config.maximumHealthLoseable.get();
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
+        // NOT USING THIS (dyanmic system)
         final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
         final boolean playersGainHeartsifKillednoHeart = LifeSteal.config.playersGainHeartsifKillednoHeart.get();
         final boolean disableLifesteal = LifeSteal.config.disableLifesteal.get();
@@ -82,27 +83,23 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             if (killedEntity instanceof ServerPlayer) {
                 if (!killedEntity.isAlive()) {
                     int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
-
                     LivingEntity killerEntity = killedEntity.getLastHurtByMob();
                     boolean killerEntityIsPlayer = killerEntity instanceof ServerPlayer;
-                    ServerPlayer killerPlayer = killerEntityIsPlayer ? (ServerPlayer) killerEntity: null;
+                    ServerPlayer killerPlayer = killerEntityIsPlayer ? (ServerPlayer) killerEntity : null;
 
-                    int amountOfHealthLostUponLoss;
-
-                    if (maximumheartsLoseable < 0) {
-                        if (20 + HeartDifference - amountOfHealthLostUponLossConfig >= 0 || playersGainHeartsifKillednoHeart) {
-                            amountOfHealthLostUponLoss = amountOfHealthLostUponLossConfig;
-                        } else {
-                            amountOfHealthLostUponLoss = 20 + HeartDifference;
-                        }
-                    } else {
-                        if (20 + HeartDifference - amountOfHealthLostUponLossConfig >= (20 + startingHitPointDifference) - maximumheartsLoseable || playersGainHeartsifKillednoHeart) {
-                            amountOfHealthLostUponLoss = amountOfHealthLostUponLossConfig;
-                        } else {
-                            amountOfHealthLostUponLoss = HeartDifference + maximumheartsLoseable;
-                        }
+                    // weak player killed --> protected player! No health drop!
+                    if (weakPlayerThreshold >= HeartDifference) {
+                        ((ServerPlayer)killedEntity).displayClientMessage(Component.translatable("gui.lifesteal.weak_player_death"), true);
+                        return;
                     }
 
+                    // Dynamic calculation for amount of hearts dropped (based on current max HP)
+                    // drop 1 extra heart for every 10 max HP (2 health == 1 heart)
+                    int amountOfHealthLostUponLoss = (HeartDifference+18)/20;       // extra HP drop (players 10+ hearts) 
+                    amountOfHealthLostUponLoss *= 2;
+                    amountOfHealthLostUponLoss += amountOfHealthLostUponLossConfig; // base amount of HP drop 
+  
+           
                     // THE CODE BELOW IS FOR INCREASING THE KILLER ENTITY HITPOINTDIFFERENCE IF THEY EXIST
                     if (killerEntity != null) { // IF THERE IS A KILLER ENTITY
                         if (killerEntity != killedEntity) { // IF IT'S NOT THEMSELVES (Shooting themselves with an arrow lol)
@@ -148,21 +145,16 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                         return;
                     }
 
-                    // you are weak / protected player! No health drop!
-                    int currentHealth = (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
-                    if (weakPlayerThreshold >= currentHealth) {
-                        ((ServerPlayer)killedEntity).displayClientMessage(Component.translatable("gui.lifesteal.weak_player_death"), true);
-                        return;
-                    }
 
                     lifestealData.setValue(
                         LSConstants.HEALTH_DIFFERENCE,
-                        currentHealth - amountOfHealthLostUponLoss
+                        HeartDifference - amountOfHealthLostUponLoss
                     );
 
                     lifestealData.refreshHealth(false);
                     if (LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                        LSUtil.ripHeartCrystalFromPlayer(killedEntity);
+                        int heartsDropped = amountOfHealthLostUponLoss / 2;
+                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
                     }
                 }
             }
