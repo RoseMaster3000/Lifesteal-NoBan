@@ -53,7 +53,7 @@
   "gui.lifesteal.revived": "This player has successfully been revived",
   "gui.lifesteal.unnatural_heart_crystal_disabled": "Unnatural Heart Crystals have been disabled in the configurations",
   "gui.lifesteal.withdrawing_disabled": "Withdrawing is disabled in the configurations",
-  "item.lifesteal.crystal_core": "Crystal Core",
+  "item.lifesteal.crystal_core": "Heart Fragment",
   "item.lifesteal.crystal_fragment": "Crystal Fragment",
   "item.lifesteal.heart_crystal": "Heart Crystal",
   "item.lifesteal.heart_crystal.named": "%s's Heart",
