@@ -29,7 +29,8 @@ public class LifestealFabric implements ModInitializer {
         LifeSteal.init();
         LSEvents.register();
         CommandRegistry.register();
-        LSBiomeModifier.register();
+        // DISABLES BIOME MODIFICATIONS (lifesteal ore)
+        // LSBiomeModifier.register();
         registerCriteria();
     }
 }

@@ -30,7 +30,7 @@ public class HeartCrystalItem extends Item {
     public void applyCrystalEffect(LivingEntity entity) {
         // Formula, for every hit point, increase duration of the regeneration by 50 ticks: TickDuration = MaxHealth * 50
         int tickTime = (int) (entity.getMaxHealth() * 50) / 4;
-        entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, tickTime, 3));
+        // entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, tickTime, 3));
     }
 
     public boolean useHeartCrystal(ItemStack item, Level level, LivingEntity entity) {

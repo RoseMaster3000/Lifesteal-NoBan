@@ -34,6 +34,14 @@ import java.util.*;
 public class LSCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
+            Commands.literal("withdraw")
+                .requires((commandSource) -> commandSource.hasPermission(LifeSteal.config.permissionLevelForWithdraw.get()))
+                .executes((command) -> withdraw(command.getSource(), 1))
+                .then(Commands.argument("amount", IntegerArgumentType.integer(1, 99))
+                .executes((command) -> withdraw(command.getSource(), IntegerArgumentType.getInteger(command, "amount"))))
+        );
+
+        dispatcher.register(
                 Commands.literal("ls")
                         .then(Commands.literal("reviveplayer")
                                 .requires((commandSource -> commandSource.hasPermission(LifeSteal.config.permissionLevelForRevival.get())))
@@ -81,7 +89,8 @@ public class LSCommand {
                                             return SharedSuggestionProvider.suggest(suggestList, builder);
                                         }))
                                         .then(Commands.argument("amount", IntegerArgumentType.integer())
-                                                .executes((command) -> setHitPoint(command.getSource(), GameProfileArgument.getGameProfiles(command, "players"), IntegerArgumentType.getInteger(command, "amount")))))));
+                                                .executes((command) -> setHitPoint(command.getSource(), GameProfileArgument.getGameProfiles(command, "players"), IntegerArgumentType.getInteger(command, "amount"))))))
+        );
     }
 
     private static int revivePlayer(CommandSourceStack source, Collection<GameProfile> gameProfiles, @Nullable Vec3 position, boolean enableLightningEffect, boolean silentRevive){
@@ -114,6 +123,11 @@ public class LSCommand {
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
         String advancementUsed = (String) LifeSteal.config.advancementUsedForWithdrawing.get();
 
+        if (serverPlayer.getHealth() < serverPlayer.getMaxHealth()) {
+            serverPlayer.displayClientMessage(Component.translatable("gui.lifesteal.not_full_health"), true);
+            return Command.SINGLE_SUCCESS;
+        }
+
         if (serverPlayer.getAdvancements().getOrStartProgress(Advancement.Builder.advancement().build(ResourceLocation.tryParse(advancementUsed))).isDone() || advancementUsed.isEmpty() || serverPlayer.isCreative()) {
             LSData lifestealData = LSData.get(serverPlayer).get();
 
@@ -124,17 +138,16 @@ public class LSCommand {
                     serverPlayer.displayClientMessage(Component.translatable("gui.lifesteal.cant_withdraw_less_than_maximum"), true);
                     return Command.SINGLE_SUCCESS;
                 }
-            }else if(newHealthDifference <= lifestealData.getHPDifferenceRequiredForBan()) {
+            } else if (newHealthDifference <= lifestealData.getHPDifferenceRequiredForBan()) {
                 serverPlayer.displayClientMessage(Component.translatable("gui.lifesteal.cant_withdraw_less_than_amount_have"), true);
                 return Command.SINGLE_SUCCESS;
             }
 
-            lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE,newHealthDifference);
+            lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, newHealthDifference);
             lifestealData.refreshHealth(false);
 
             ItemStack heartCrystal = new ItemStack(LSItems.HEART_CRYSTAL.get(), amount);
             heartCrystal.set(LSDataComponents.UNFRESH.get(), true);
-
 
             heartCrystal.set(DataComponents.CUSTOM_NAME, Component.translatable("item.lifesteal.heart_crystal.named", serverPlayer.getName().getString()));
             boolean given = serverPlayer.getInventory().add(heartCrystal);

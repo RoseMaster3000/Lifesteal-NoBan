@@ -35,13 +35,12 @@ public class CrystalCoreItem extends Item {
 
                     int oldDuration = 0;
                     if (entity.hasEffect(MobEffects.REGENERATION)) {
-                        MobEffectInstance mobEffect = entity.getEffect(MobEffects.REGENERATION);
-
-                        oldDuration = mobEffect.getDuration();
+                        //MobEffectInstance mobEffect = entity.getEffect(MobEffects.REGENERATION);
+                        //oldDuration = mobEffect.getDuration();
                     }
 
                     int tickTime = (int) ((amountThatWillBeHealed * 50) / 3) + oldDuration;
-                    entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, tickTime, 2));
+                    //entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, tickTime, 2));
                 } else {
                     serverPlayer.displayClientMessage(Component.translatable("gui.lifesteal.crystal_core_at_max_health"), true);
                     success = false;
