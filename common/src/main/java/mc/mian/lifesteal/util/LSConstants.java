@@ -81,6 +81,7 @@ public class LSConstants {
     public static final ResourceLocation HEALTH_DIFFERENCE = modLoc("health_difference");
     public static final ResourceLocation TIME_KILLED = modLoc("time_killed");
     public static final ResourceLocation HEALTH_MODIFIER = modLoc("health_modifier");
+    public static final ResourceLocation HEARTS_DROPPED = modLoc("hearts_dropped");
 
     // Loot Tables
     public static final ResourceKey<LootTable> BARREL_1_TABLE =

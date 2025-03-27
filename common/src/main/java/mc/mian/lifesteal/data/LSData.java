@@ -43,6 +43,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class LSData implements ILSData {
     private final LivingEntity livingEntity;
+
     public LSData(final LivingEntity entity) {
         this.livingEntity = entity;
     }
@@ -56,8 +57,7 @@ public class LSData implements ILSData {
     public void tryRevivalEffects() {
         if (this.livingEntity instanceof ServerPlayer serverPlayer) {
             PlayerImpl playerImpl = ((PlayerImpl) serverPlayer);
-            if(playerImpl.getRevived())
-            {
+            if (playerImpl.getRevived()) {
                 Level level = this.livingEntity.level();
                 if (!level.isClientSide) {
                     if (serverPlayer.isSpectator()) {
@@ -75,6 +75,7 @@ public class LSData implements ILSData {
                         setValue(LSConstants.HEALTH_DIFFERENCE, LifeSteal.config.startingHealthDifference.get());
                     }
                     setValue(LSConstants.TIME_KILLED, 0L);
+                    setValue(LSConstants.HEARTS_DROPPED, -1); // Reset hearts dropped on revival
                     refreshHealth(true);
                     LSCriteria.BACK_FROM_THE_DEAD.trigger(serverPlayer);
                     playerImpl.setRevived(false);
@@ -92,14 +93,11 @@ public class LSData implements ILSData {
 
                 int y = playerPos.getY();
 
-                if(y <= level.dimensionType().minY() || y >= level.getHeight())
-                {
-                    for(int i = 1; i < level.getHeight(); i++)
-                    {
+                if (y <= level.dimensionType().minY() || y >= level.getHeight()) {
+                    for (int i = 1; i < level.getHeight(); i++) {
                         BlockPos pos = new BlockPos(playerPos.getX(), i, playerPos.getZ());
 
-                        if(level.getBlockState(pos).isAir() || level.getBlockState(pos).getDestroySpeed(level, pos) > -1)
-                        {
+                        if (level.getBlockState(pos).isAir() || level.getBlockState(pos).getDestroySpeed(level, pos) > -1) {
                             y = i;
                             break;
                         }
@@ -108,19 +106,17 @@ public class LSData implements ILSData {
 
                 BlockPos targetPos = new BlockPos(playerPos.getX(), y, playerPos.getZ());
 
-                if(level.getBlockState(targetPos).getDestroySpeed(level, targetPos) > -1)
-                {
-                    while(level.getBlockEntity(targetPos) != null)
-                    {
+                if (level.getBlockState(targetPos).getDestroySpeed(level, targetPos) > -1) {
+                    while (level.getBlockEntity(targetPos) != null) {
                         targetPos = targetPos.above();
                     }
 
                     final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
                     BlockState playerHeadState = LSBlocks.REVIVE_HEAD.get().defaultBlockState().setValue(ROTATION, Integer.valueOf(Mth.floor((double) ((180.0F + serverPlayer.getYRot()) * 16.0F / 360.0F) + 0.5) & 15));
-                    if(!level.setBlockAndUpdate(targetPos, playerHeadState)) {
+                    if (!level.setBlockAndUpdate(targetPos, playerHeadState)) {
                         return null;
                     }
-                    SkullBlockEntity playerHeadEntity = (SkullBlockEntity) ((ReviveHeadBlock)playerHeadState.getBlock()).newBlockEntity(targetPos, playerHeadState);
+                    SkullBlockEntity playerHeadEntity = (SkullBlockEntity) ((ReviveHeadBlock) playerHeadState.getBlock()).newBlockEntity(targetPos, playerHeadState);
                     playerHeadEntity.setOwner(new ResolvableProfile(serverPlayer.getGameProfile()));
                     level.setBlockEntity(playerHeadEntity);
 
@@ -133,8 +129,9 @@ public class LSData implements ILSData {
         }
         return null;
     }
+
     @Override
-    public boolean dropPlayerHead(){
+    public boolean dropPlayerHead() {
         if (this.livingEntity instanceof ServerPlayer serverPlayer) {
             if (!serverPlayer.level().isClientSide) {
                 ItemStack itemStack = new ItemStack(LSItems.REVIVE_HEAD_ITEM.get());
@@ -145,13 +142,14 @@ public class LSData implements ILSData {
         }
         return false;
     }
+
     @Override
     public LivingEntity getLivingEntity() {
         return this.livingEntity;
     }
 
     @ExpectPlatform
-    public static Collection<ResourceLocation> getKeys(LSData lifestealData){
+    public static Collection<ResourceLocation> getKeys(LSData lifestealData) {
         throw new AssertionError("i just fucked your DAD hehehHAHAHAHAH");
     }
 
@@ -164,6 +162,7 @@ public class LSData implements ILSData {
     public static <T> void setValue(LSData lifestealData, ResourceLocation key, T value) {
         throw new AssertionError("joe mama");
     }
+
     @Override
     public <T> T getValue(ResourceLocation key) {
         return getValue(this, key);
@@ -184,14 +183,14 @@ public class LSData implements ILSData {
 
     // Returns the real amount of hitpoints a player has, includes every other mod's effect and ours.
     @Override
-    public int getHealthModifiedTotal(boolean includeHealthDifference){
+    public int getHealthModifiedTotal(boolean includeHealthDifference) {
         AttributeInstance attribute = this.livingEntity.getAttribute(Attributes.MAX_HEALTH);
         AtomicInteger healthModifiedTotal = includeHealthDifference ?
                 new AtomicInteger(getValue(LSConstants.HEALTH_DIFFERENCE)) :
                 new AtomicInteger(0);
 
         attribute.getModifiers().forEach(modifier -> {
-            if(!modifier.is(LSConstants.HEALTH_MODIFIER)){
+            if (!modifier.is(LSConstants.HEALTH_MODIFIER)) {
                 if (modifier.operation() == AttributeModifier.Operation.ADD_VALUE) {
                     double amount = modifier.amount();
                     healthModifiedTotal.addAndGet((int) Math.round(amount));
@@ -208,28 +207,29 @@ public class LSData implements ILSData {
 
     // Returns the amount a player's HPDifference would have to be to get banned.
     @Override
-    public int getHPDifferenceRequiredForBan(){
+    public int getHPDifferenceRequiredForBan() {
         int healthModified = this.getHealthModifiedTotal(false) + (int) this.livingEntity.getAttribute(Attributes.MAX_HEALTH).getBaseValue();
         return -healthModified;
     }
 
     @Override
-    public void killPlayerPermanently(){
-        if(!this.livingEntity.level().isClientSide){
+    public void killPlayerPermanently() {
+        if (!this.livingEntity.level().isClientSide) {
             if (this.livingEntity instanceof ServerPlayer serverPlayer) {
                 setValue(LSConstants.HEALTH_DIFFERENCE, LifeSteal.config.startingHealthDifference.get());
                 setValue(LSConstants.TIME_KILLED, System.currentTimeMillis());
+                setValue(LSConstants.HEARTS_DROPPED, -1);
                 refreshHealth(true);
                 MinecraftServer server = this.livingEntity.level().getServer();
 
                 MutableComponent deadcomponent = Component.translatable("bannedmessage.lifesteal.lost_max_hearts");
 
-                if(serverPlayer.isDeadOrDying())
+                if (serverPlayer.isDeadOrDying())
                     serverPlayer.getInventory().dropAll();
 
                 if (LifeSteal.config.playersSpawnHeadUponDeath.get() && LSUtil.isMultiplayer(server, false)) {
                     BlockPos blockPos = spawnPlayerHead();
-                    if(blockPos == null){
+                    if (blockPos == null) {
                         dropPlayerHead();
                     } else {
                         MutableComponent compPos = Component.translatable("bannedmessage.lifesteal.revive_head_location", blockPos.getX(), blockPos.getY(), blockPos.getZ());
@@ -237,19 +237,19 @@ public class LSData implements ILSData {
                     }
                 }
 
-                if(LifeSteal.config.deathDuration.get() > 0){
+                if (LifeSteal.config.deathDuration.get() > 0) {
                     Calendar instance = Calendar.getInstance();
-                    instance.setTime(new Date((long)getValue(LSConstants.TIME_KILLED) + LifeSteal.config.deathDuration.get()));
+                    instance.setTime(new Date((long) getValue(LSConstants.TIME_KILLED) + LifeSteal.config.deathDuration.get()));
                     int AM_PM = instance.get(Calendar.AM_PM);
                     String formatAMPM;
-                    if(AM_PM == Calendar.AM)
+                    if (AM_PM == Calendar.AM)
                         formatAMPM = "AM";
                     else
                         formatAMPM = "PM";
 
                     MutableComponent compPos = Component.translatable(
                             "bannedmessage.lifesteal.auto_revive_time",
-                            instance.get(Calendar.HOUR)+":"+instance.get(Calendar.MINUTE)+" "+formatAMPM+", "+(instance.get(Calendar.MONTH)+1) +"/"+instance.get(Calendar.DATE)+"/"+instance.get(Calendar.YEAR));
+                            instance.get(Calendar.HOUR) + ":" + instance.get(Calendar.MINUTE) + " " + formatAMPM + ", " + (instance.get(Calendar.MONTH) + 1) + "/" + instance.get(Calendar.DATE) + "/" + instance.get(Calendar.YEAR));
                     deadcomponent = LSUtil.addComponents(deadcomponent, compPos);
                 }
 
@@ -264,8 +264,8 @@ public class LSData implements ILSData {
                     if (serverPlayer != null) {
                         serverPlayer.connection.disconnect(deadcomponent);
                     }
-                } else{
-                    if (!serverPlayer.isSpectator()){
+                } else {
+                    if (!serverPlayer.isSpectator()) {
                         serverPlayer.setGameMode(GameType.SPECTATOR);
                     }
                     this.livingEntity.sendSystemMessage(deadcomponent);
@@ -320,6 +320,7 @@ public class LSData implements ILSData {
         CompoundTag tag = new CompoundTag();
         tag.putInt(LSConstants.HEALTH_DIFFERENCE.getPath(), getValue(LSConstants.HEALTH_DIFFERENCE));
         tag.putLong(LSConstants.TIME_KILLED.getPath(), getValue(LSConstants.TIME_KILLED));
+        tag.putInt(LSConstants.HEARTS_DROPPED.getPath(), getValue(LSConstants.HEARTS_DROPPED));
         return tag;
     }
 
@@ -327,5 +328,6 @@ public class LSData implements ILSData {
     public void deserializeNBT(CompoundTag tag) {
         setValue(LSConstants.HEALTH_DIFFERENCE, tag.getInt(LSConstants.HEALTH_DIFFERENCE.getPath()));
         setValue(LSConstants.TIME_KILLED, tag.getLong(LSConstants.TIME_KILLED.getPath()));
+        setValue(LSConstants.HEARTS_DROPPED, tag.getInt(LSConstants.HEARTS_DROPPED.getPath()));
     }
 }

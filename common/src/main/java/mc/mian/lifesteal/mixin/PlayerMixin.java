@@ -24,7 +24,6 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
     @Shadow public abstract boolean killedEntity(ServerLevel level, LivingEntity entity);
 
     private boolean revived;
-    private int heartsDropped = -1;
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
         LSData.get(this).ifPresent(iLifestealData -> iLifestealData.refreshHealth(false));
@@ -91,12 +90,14 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                     LivingEntity killerEntity = killedEntity.getLastHurtByMob();
                     boolean killerEntityIsPlayer = killerEntity instanceof ServerPlayer;
                     ServerPlayer killerPlayer = killerEntityIsPlayer ? (ServerPlayer) killerEntity : null;
-                    this.heartsDropped = -1;
 
                     // weak player killed --> protected player! No health drop!
                     if (weakPlayerThreshold >= HeartDifference) {
-                        this.heartsDropped = 0;
+                        lifestealData.setValue(LSConstants.HEARTS_DROPPED, 0);
                         return;
+                    }
+                    else{
+                        lifestealData.setValue(LSConstants.HEARTS_DROPPED, -1);
                     }
 
                     // hearts dropped calculation (if the person who died has lots of MAXHP, they will drop more hearts)
@@ -148,17 +149,21 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                         return;
                     }
 
-
+                    // recored new MAXHP value for user
                     lifestealData.setValue(
                         LSConstants.HEALTH_DIFFERENCE,
                         HeartDifference - amountOfHealthLostUponLoss
                     );
 
+                    // drop hearts at location
+                    int heartsDropped = amountOfHealthLostUponLoss / 2;
                     lifestealData.refreshHealth(false);
                     if (LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                        this.heartsDropped = amountOfHealthLostUponLoss / 2;
-                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, this.heartsDropped);
+                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
                     }
+                    // record number of hearts dropped
+                    lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);
+
                 }
             }
         });

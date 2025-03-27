@@ -17,6 +17,7 @@ public class LSDataImpl extends LSData implements ComponentV3 {
     public LSDataImpl(LivingEntity livingEntity) {
         super(livingEntity);
         this.dataMap.putIfAbsent(LSConstants.HEALTH_DIFFERENCE, LifeSteal.config.startingHealthDifference.get());
+        this.dataMap.putIfAbsent(LSConstants.HEARTS_DROPPED, -1);
         this.dataMap.putIfAbsent(LSConstants.TIME_KILLED, 0L);
     }
 

@@ -9,7 +9,7 @@
 * I also made withdrawn hearts have the players name on it.
 * To make PvP more fair, I removed the healing (regenration) given from consuming hearts, as well as made withdraw only possible if you are fully healed
 * Heart loss now scales with maxHP (based on a percentage, rounded down. Can be changed with config called `Extra Heart Drop Percent`, set to 0 to disable.)
-* I added a respawn message which tells the player how many hearts they lost
+* (FABRIC ONLY) Player are told how many hearts they lost when they respawn
 * Removed Revival per tick code. Players dont go lower than 3 hearts on my server, no revives are needed (I figured this code only hurts performance in my use case)
 
 
