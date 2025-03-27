@@ -24,6 +24,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
     @Shadow public abstract boolean killedEntity(ServerLevel level, LivingEntity entity);
 
     private boolean revived;
+    private int heartsDropped = -1;
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
         LSData.get(this).ifPresent(iLifestealData -> iLifestealData.refreshHealth(false));
@@ -51,18 +52,21 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         }
     }
 
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void tickMethod(final CallbackInfo info){
-        if(!this.level().isClientSide){
-            LSData.get(this).ifPresent(lifestealData -> {
-                // Are we at the amount where player should be banned based on their stats?
-                if((int) lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE) <= lifestealData.getHPDifferenceRequiredForBan()){
-                    lifestealData.killPlayerPermanently();
-                }
-                lifestealData.tryRevivalEffects();
-            });
-        }
+    private void sendScreenMessage(String message) {
+        ServerPlayer player = (ServerPlayer)(LivingEntity)this;
+        Component emptyTitle = Component.literal("");
+        Component subtitleMessage = Component.literal(message)
+                .withStyle(style -> style.withBold(true).withItalic(true)
+                        .withColor(net.minecraft.ChatFormatting.RED));
+
+        // Send Message (as subtitle centered on screen)
+        player.connection.send(
+                new net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket(subtitleMessage));
+        player.connection.send(
+                new net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket(emptyTitle));
     }
+
+
     @Inject(method = "dropEquipment", at = @At("HEAD"))
     private void onDeath(final CallbackInfo info) {
 
@@ -70,6 +74,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
         // NOT USING THIS (dyanmic system)
         final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
+        final float extraHeartDropPercent = LifeSteal.config.amountOfHealthLostUponLoss.get()/100;
         final boolean playersGainHeartsifKillednoHeart = LifeSteal.config.playersGainHeartsifKillednoHeart.get();
         final boolean disableLifesteal = LifeSteal.config.disableLifesteal.get();
         final boolean loseHeartsWhenKilledByPlayer = LifeSteal.config.loseHeartsWhenKilledByPlayer.get();
@@ -86,24 +91,23 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                     LivingEntity killerEntity = killedEntity.getLastHurtByMob();
                     boolean killerEntityIsPlayer = killerEntity instanceof ServerPlayer;
                     ServerPlayer killerPlayer = killerEntityIsPlayer ? (ServerPlayer) killerEntity : null;
+                    this.heartsDropped = -1;
 
                     // weak player killed --> protected player! No health drop!
                     if (weakPlayerThreshold >= HeartDifference) {
-                        ((ServerPlayer)killedEntity).displayClientMessage(Component.translatable("gui.lifesteal.weak_player_death"), true);
+                        this.heartsDropped = 0;
                         return;
                     }
 
-                    // Dynamic calculation for amount of hearts dropped (based on current max HP)
+                    // hearts dropped calculation (if the person who died has lots of MAXHP, they will drop more hearts)
                     // drop 1 extra heart for every 10 max HP (2 health == 1 heart)
-                    int amountOfHealthLostUponLoss = (HeartDifference+18)/20;       // extra HP drop (players 10+ hearts) 
-                    amountOfHealthLostUponLoss *= 2;
-                    amountOfHealthLostUponLoss += amountOfHealthLostUponLossConfig; // base amount of HP drop 
-  
-           
-                    // THE CODE BELOW IS FOR INCREASING THE KILLER ENTITY HITPOINTDIFFERENCE IF THEY EXIST
+                    int amountOfHealthLostUponLoss = Math.round( (HeartDifference+20) / 2 * extraHeartDropPercent  );
+                    amountOfHealthLostUponLoss *= 2; 
+                    amountOfHealthLostUponLoss += amountOfHealthLostUponLossConfig; 
+
+                    // Killer gains hearts
                     if (killerEntity != null) { // IF THERE IS A KILLER ENTITY
                         if (killerEntity != killedEntity) { // IF IT'S NOT THEMSELVES (Shooting themselves with an arrow lol)
-                            // EVERYTHING BELOW THIS COMMENT IS CODE FOR MAKING THE KILLER PERSON'S HEART DIFFERENCE GO UP.
                             if (killerEntityIsPlayer && !disableLifesteal) {
                                 if (playersGainHeartsifKillednoHeart) {
                                     increaseHealth(killerEntity, amountOfHealthLostUponLoss, killedEntity);
@@ -124,7 +128,6 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                     }
 
                     // THE CODE BELOW IS FOR REDUCING THE KILLED ENTITY'S HITPOINTDIFFERENCE
-
                     if (loseHeartsWhenKilledByPlayer || loseHeartsWhenKilledByMob || loseHeartsWhenKilledByEnvironment) {
                         if (killerEntity != null) { // IF KILLER ENTITY EXISTS
                             if (killedEntity != killerEntity) { // IF KILLER ENTITY ISNT SELF/ IF A KILLER KILLED OUR GUY
@@ -153,8 +156,8 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
 
                     lifestealData.refreshHealth(false);
                     if (LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                        int heartsDropped = amountOfHealthLostUponLoss / 2;
-                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
+                        this.heartsDropped = amountOfHealthLostUponLoss / 2;
+                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, this.heartsDropped);
                     }
                 }
             }

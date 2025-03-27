@@ -28,45 +28,45 @@ public abstract class ServerLevelMixin {
 
     @Shadow @Nonnull public abstract MinecraftServer getServer();
 
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void tick(BooleanSupplier hasTimeLeft, CallbackInfo ci){
-        if(this.getLevel().dimension() == ServerLevel.OVERWORLD && !this.getLevel().isClientSide){
-            IndestructibleUtil.setIndestructibilityState(LSBlocks.REVIVE_HEAD.getId().toString(), LifeSteal.config.unbreakableReviveHeads.get());
-            IndestructibleUtil.setIndestructibilityState(LSBlocks.REVIVE_WALL_HEAD.getId().toString(), LifeSteal.config.unbreakableReviveHeads.get());
+    // @Inject(method = "tick", at = @At("HEAD"))
+    // private void tick(BooleanSupplier hasTimeLeft, CallbackInfo ci){
+    //     if(this.getLevel().dimension() == ServerLevel.OVERWORLD && !this.getLevel().isClientSide){
+    //         IndestructibleUtil.setIndestructibilityState(LSBlocks.REVIVE_HEAD.getId().toString(), LifeSteal.config.unbreakableReviveHeads.get());
+    //         IndestructibleUtil.setIndestructibilityState(LSBlocks.REVIVE_WALL_HEAD.getId().toString(), LifeSteal.config.unbreakableReviveHeads.get());
 
-            tickTime++;
-            if(tickTime%20==0){
-                tickTime = 0;
-                if(LifeSteal.config.deathDuration.get() != 0){
-                    ImmutableMap<GameProfile, LSUtil.KilledType> gameProfiles = LSUtil.getDeadPlayers(this.getServer());
-                    gameProfiles.forEach((profile, killedType) -> {
-                        ServerPlayer player = this.getServer().getPlayerList().getPlayer(profile.getId());
-                        long TimeKilled = 0L;
-                        if(player != null){
-                            TimeKilled = LSData.get(player).get().getValue(LSConstants.TIME_KILLED);
-                        } else {
-                            CompoundTag tag = LSUtil.getPlayerData(this.getServer(), profile);
-                            if(tag != null){
-                                TimeKilled = LSUtil.getLifestealDataFromTag(
-                                        tag,
-                                        LSConstants.TIME_KILLED.getPath(),
-                                        CompoundTag::getLong);
-                            }
-                        }
-                        long TimePassed = System.currentTimeMillis() - TimeKilled;
-                        if(TimePassed >= LifeSteal.config.deathDuration.get() * 1000){
-                            LSUtil.revivePlayer(
-                                    this.getLevel(),
-                                    this.getLevel().getSharedSpawnPos(),
-                                    profile,
-                                    false,
-                                    true,
-                                    null
-                            );
-                        }
-                    });
-                }
-            }
-        }
-    }
+    //         tickTime++;
+    //         if(tickTime%20==0){
+    //             tickTime = 0;
+    //             if(LifeSteal.config.deathDuration.get() != 0){
+    //                 ImmutableMap<GameProfile, LSUtil.KilledType> gameProfiles = LSUtil.getDeadPlayers(this.getServer());
+    //                 gameProfiles.forEach((profile, killedType) -> {
+    //                     ServerPlayer player = this.getServer().getPlayerList().getPlayer(profile.getId());
+    //                     long TimeKilled = 0L;
+    //                     if(player != null){
+    //                         TimeKilled = LSData.get(player).get().getValue(LSConstants.TIME_KILLED);
+    //                     } else {
+    //                         CompoundTag tag = LSUtil.getPlayerData(this.getServer(), profile);
+    //                         if(tag != null){
+    //                             TimeKilled = LSUtil.getLifestealDataFromTag(
+    //                                     tag,
+    //                                     LSConstants.TIME_KILLED.getPath(),
+    //                                     CompoundTag::getLong);
+    //                         }
+    //                     }
+    //                     long TimePassed = System.currentTimeMillis() - TimeKilled;
+    //                     if(TimePassed >= LifeSteal.config.deathDuration.get() * 1000){
+    //                         LSUtil.revivePlayer(
+    //                                 this.getLevel(),
+    //                                 this.getLevel().getSharedSpawnPos(),
+    //                                 profile,
+    //                                 false,
+    //                                 true,
+    //                                 null
+    //                         );
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }
 }

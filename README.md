@@ -1,8 +1,17 @@
 <img src="https://i.imgur.com/rvnyecq.png">
 
-# 🌹 RoseMaster's Fork
+# 🌹 RoseMaster's Lifesteal Fork
 
-I made this fork so that weak players do not lose or drop any hearts. This prevent bullying, farming, potential heart dupe exploits. This has been added to the config as `Weak players do not drop/lose hearts when they die`; set this to -20 if you want to disable this feature (Since players at -20 are already dead, setting it to -20 effectively disables the feature) I also made withdrawn hearts have the players name on it, unnatural hearts felt weird.
+* I forked this for my own minecraft server specific vision/need
+
+* Weak players do not lose or drop any hearts. This prevent bullying, farming, potential heart dupe exploits. Player with 3 max hp are considered "weak." This threshold can be changed via config `Weak players do not drop/lose hearts when they die`; setting it to -20 effectively disable the feature as players are already dead at -20 health offset.
+* World Generation is commented out...no heart ores. I want hearts to be a finite/rare resource on the server (player only spawn in with 3 hearts)
+* I also made withdrawn hearts have the players name on it.
+* To make PvP more fair, I removed the healing (regenration) given from consuming hearts, as well as made withdraw only possible if you are fully healed
+* Heart loss now scales with maxHP (based on a percentage, rounded down. Can be changed with config called `Extra Heart Drop Percent`, set to 0 to disable.)
+* I added a respawn message which tells the player how many hearts they lost
+* Removed Revival per tick code. Players dont go lower than 3 hearts on my server, no revives are needed (I figured this code only hurts performance in my use case)
+
 
 # 💔 Lifesteal
 Lifesteal is a Minecraft mod inspired by the original Lifesteal SMP plugin where killing other players steals their hearts for your own gain**

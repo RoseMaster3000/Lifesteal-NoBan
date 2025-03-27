@@ -1,0 +1,10 @@
+- LifeStealMod
+    (mesage OnDeath)
+        -> You dropeed X hearts where you died
+
+
+- ServerJoinCommand
+    /recipe give @p *
+    /ls sethealthpoints 6
+    /give @p lifesteal:crystal_core
+    /give @p 
