@@ -56,7 +56,8 @@ public class LSConfig {
         builder.comment("This category holds general values that most people will want to change.");
         builder.push("General Settings");
         this.startingHealthDifference = buildInt(builder, "Starting additional Hitpoints:", 0, -19, Integer.MAX_VALUE, "Determines the number of additional Hitpoints beyond the 20 you should start with.");
-        this.amountOfHealthLostUponLoss = buildInt(builder, "Number of HitPoints lost/given upon death/kill:", 0, 1, Integer.MAX_VALUE, "How many Hitpoints are lost/gained upon death or being killed.");
+        this.amountOfHealthLostUponLoss = buildInt(builder, "Number of HitPoints lost/given upon death/kill:", 0, 0, Integer.MAX_VALUE, "How many Hitpoints are lost/gained upon death or being killed.");
+        this.extraHeartDropPercent = buildInt(builder, "Extra Hearts Dropped", 20, 0, Integer.MAX_VALUE, "Percentage of max hp that you drop (in addition) [0-100%] set to 0 to disable this feature.");
         this.playersSpawnHeadUponDeath = buildBoolean(builder, "Spawn Revive Head upon player elimination:", true, "Determines if Revive Heads should spawn upon a player being eliminated (no more hearts). NOTE: Always false in Singleplayer");
         this.uponDeathBanned = buildBoolean(builder, "Ban players upon losing all hearts:", true, "Determines if players who have lost all hearts get banned, or simply go into Spectator mode. Singleplayer will always go into Spectator");
         this.playerDropsHeartCrystalWhenKilled = buildBoolean(builder, "Players drop a Heart Crystal on death:", false, "Determines if players should drop a heart crystal upon death.");
@@ -70,7 +71,6 @@ public class LSConfig {
         this.loseHeartsWhenKilledByMob = buildBoolean(builder, "Lose heart(s) when killed by a mob:", true, "Determines if players should lose hearts when killed by mobs");
         this.loseHeartsWhenKilledByEnvironment = buildBoolean(builder, "Lose heart(s) when killed by the environment:", true, "Determines if players lose hearts when killed by the environment. (Lava, fall damage, etc)");
         this.weakPlayerThreshold = buildInt(builder, "Weak player threshold:", -20, -20, Integer.MAX_VALUE, "Inclusive threshold where players are considered weak & do not lose hearts; -20 disables this feature.");
-        this.extraHeartDropPercent = buildInt(builder, "Extra Heart Drop Percent", 20, 0, Integer.MAX_VALUE, "Percentage of max hp that you drop (in addition), set to 0 to disable this feature.");
         builder.pop();
 
         builder.comment("Settings for Items and Blocks");

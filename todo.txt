@@ -5,6 +5,7 @@
 
 - ServerJoinCommand
     /recipe give @p *
-    /ls sethealthpoints 6
-    /give @p lifesteal:crystal_core
-    /give @p 
+    /ls sethealthpoints @p -14
+    /give @p lifesteal:crystal_core 5
+    /give @p written_book[...]
+    /say @p Welcome to PokeJongSMP, read the server book to learn how to gain more hearts!

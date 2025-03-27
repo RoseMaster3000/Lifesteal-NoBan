@@ -74,7 +74,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
         // NOT USING THIS (dyanmic system)
         final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
-        final int extraHeartDropPercent = LifeSteal.config.amountOfHealthLostUponLoss.get();
+        final int extraHeartDropPercentConfig = LifeSteal.config.extraHeartDropPercent.get();
         final boolean playersGainHeartsifKillednoHeart = LifeSteal.config.playersGainHeartsifKillednoHeart.get();
         final boolean disableLifesteal = LifeSteal.config.disableLifesteal.get();
         final boolean loseHeartsWhenKilledByPlayer = LifeSteal.config.loseHeartsWhenKilledByPlayer.get();
@@ -101,7 +101,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
 
                     // hearts dropped calculation (if the person who died has lots of MAXHP, they will drop more hearts)
                     // drop 1 extra heart for every 10 max HP (2 health == 1 heart)
-                    int amountOfHealthLostUponLoss = Math.round((HeartDifference+20f)/2f*extraHeartDropPercent/100f);
+                    int amountOfHealthLostUponLoss = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
                     amountOfHealthLostUponLoss *= 2; 
                     amountOfHealthLostUponLoss += amountOfHealthLostUponLossConfig; 
 
