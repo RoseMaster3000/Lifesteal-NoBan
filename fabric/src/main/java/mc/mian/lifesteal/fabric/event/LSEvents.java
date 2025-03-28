@@ -2,6 +2,7 @@ package mc.mian.lifesteal.fabric.event;
 
 import mc.mian.lifesteal.util.LSConstants;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import mc.mian.lifesteal.data.LSData;
 import net.minecraft.resources.ResourceLocation;
 
@@ -25,11 +26,12 @@ public class LSEvents {
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             String message = "You died like a bitch...";
             Optional<LSData> newDataOptional = LSData.get(newPlayer);
+            int heartsDropped = -1;
 
             // fetch heart drop count
             if (newDataOptional.isPresent()) {
                 LSData newData = newDataOptional.get();
-                int heartsDropped = newData.getValue(LSConstants.HEARTS_DROPPED);
+                heartsDropped = newData.getValue(LSConstants.HEARTS_DROPPED);
    
                 // generate respawn message (how many hearts dropped)
                 if (heartsDropped == 0) {
@@ -39,25 +41,34 @@ public class LSEvents {
                 else if (heartsDropped > 1){
                     message = "You dropped " + heartsDropped + " hearts...";}
             } 
-            else {
-                message = alive ? "Respawned" : "Welcome to the PokeJong SMP!";
+
+            if (heartsDropped >= 0) {
+                Component emptyTitle = Component.literal("");
+                Component subtitleMessage = Component.literal(message)
+                        .withStyle(style -> style.withBold(true).withItalic(true)
+                                .withColor(net.minecraft.ChatFormatting.RED));
+                // Send Message (as subtitle centered on screen)
+                newPlayer.connection.send(
+                        new net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket(subtitleMessage));
+                newPlayer.connection.send(
+                        new net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket(emptyTitle));
+            }
+        });
+
+
+        // Register event for when a player joins the world
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            ServerPlayer player = handler.getPlayer();
+            Optional<LSData> newDataOptional = LSData.get(player);
+
+            if (newDataOptional.isPresent()) {
+                LSData newData = newDataOptional.get();
+                newData.refreshHealth(true);
             }
 
-            // newPlayer.sendSystemMessage(Component.literal(message));
-
-
-            Component emptyTitle = Component.literal("");
-            Component subtitleMessage = Component.literal(message)
-                    .withStyle(style -> style.withBold(true).withItalic(true)
-                            .withColor(net.minecraft.ChatFormatting.RED));
-
-            // Send Message (as subtitle centered on screen)
-            newPlayer.connection.send(
-                    new net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket(subtitleMessage));
-            newPlayer.connection.send(
-                    new net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket(emptyTitle));
-
         });
+
+
     }
 
 }
