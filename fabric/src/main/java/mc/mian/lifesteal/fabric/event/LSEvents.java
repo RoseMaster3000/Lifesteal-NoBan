@@ -63,7 +63,7 @@ public class LSEvents {
 
             if (newDataOptional.isPresent()) {
                 LSData newData = newDataOptional.get();
-                newData.refreshHealth(true);
+                newData.refreshHealth(false);
             }
 
         });
