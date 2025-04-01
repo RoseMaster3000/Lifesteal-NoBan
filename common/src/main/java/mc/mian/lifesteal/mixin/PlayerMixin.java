@@ -79,92 +79,65 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final boolean loseHeartsWhenKilledByPlayer = LifeSteal.config.loseHeartsWhenKilledByPlayer.get();
         final boolean loseHeartsWhenKilledByMob = LifeSteal.config.loseHeartsWhenKilledByMob.get();
         final boolean loseHeartsWhenKilledByEnvironment = LifeSteal.config.loseHeartsWhenKilledByEnvironment.get();
+        final boolean heartCrystalCanDrop = LifeSteal.config.playerDropsHeartCrystalWhenKilled.get();
+
         final int weakPlayerThreshold = LifeSteal.config.weakPlayerThreshold.get();
 
         LivingEntity killedEntity = this;
 
         LSData.get(killedEntity).ifPresent(lifestealData -> {
-            if (killedEntity instanceof ServerPlayer) {
-                if (!killedEntity.isAlive()) {
-                    int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
-                    LivingEntity killerEntity = killedEntity.getLastHurtByMob();
-                    boolean killerEntityIsPlayer = killerEntity instanceof ServerPlayer;
-                    ServerPlayer killerPlayer = killerEntityIsPlayer ? (ServerPlayer) killerEntity : null;
+            // GATE KEEP
+            if (!(killedEntity instanceof ServerPlayer)) {return;}
+            if (killedEntity.isAlive()) {return;}
 
-                    // weak player killed --> protected player! No health drop!
-                    if (weakPlayerThreshold >= HeartDifference) {
-                        lifestealData.setValue(LSConstants.HEARTS_DROPPED, 0);
-                        return;
-                    }
-                    else{
-                        lifestealData.setValue(LSConstants.HEARTS_DROPPED, -1);
-                    }
+            // INITIALIZE VARIABLES
+            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            LivingEntity killerEntity = killedEntity.getLastHurtByMob();
+            boolean killerIsPlayer = killerEntity instanceof ServerPlayer;
+            boolean killerIsSelf = (killerEntity == killedEntity);
+            boolean killerIsMob = (!killerIsPlayer && (killerEntity !=null));
+            ServerPlayer killerPlayer = killerIsPlayer ? (ServerPlayer) killerEntity : null;
 
-                    // hearts dropped calculation (if the person who died has lots of MAXHP, they will drop more hearts)
-                    // drop 1 extra heart for every 10 max HP (2 health == 1 heart)
-                    int amountOfHealthLostUponLoss = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
-                    amountOfHealthLostUponLoss *= 2; 
-                    amountOfHealthLostUponLoss += amountOfHealthLostUponLossConfig; 
+            // CALCULATE HEARTS DROPPED (if the person who died has lots of MAXHP, they will drop more hearts)
+            // (drop 1 extra heart for every 10 max HP --> 2 health == 1 heart)
+            int healthDrop = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
+            healthDrop *= 2; 
+            healthDrop += amountOfHealthLostUponLossConfig; 
+            int heartsDropped = healthDrop / 2;
 
-                    // Killer gains hearts
-                    if (killerEntity != null) { // IF THERE IS A KILLER ENTITY
-                        if (killerEntity != killedEntity) { // IF IT'S NOT THEMSELVES (Shooting themselves with an arrow lol)
-                            if (killerEntityIsPlayer && !disableLifesteal) {
-                                if (playersGainHeartsifKillednoHeart) {
-                                    increaseHealth(killerEntity, amountOfHealthLostUponLoss, killedEntity);
-                                } else {
-                                    if (maximumheartsLoseable > -1) {
-                                        if (startingHitPointDifference + HeartDifference > -maximumheartsLoseable) {
-                                            increaseHealth(killerEntity, amountOfHealthLostUponLoss, killedEntity);
-                                        } else {
-                                            killerPlayer.sendSystemMessage(Component.translatable("chat.message.lifesteal.no_more_hearts_to_steal"));
-                                        }
+            // DECREMENT HEALTH  / RECORD DROPPED HEARTS
+            if (weakPlayerThreshold >= HeartDifference) {
+                lifestealData.setValue(LSConstants.HEARTS_DROPPED, 0);
+                return;
+            }
+            else{
+                // record heart drop
+                lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);
+                // record new HP value for user
+                lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, HeartDifference - healthDrop);
+                // Refresh HP
+                lifestealData.refreshHealth(false);
+            }
 
-                                    } else {
-                                        increaseHealth(killerEntity, amountOfHealthLostUponLoss, killedEntity);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // THE CODE BELOW IS FOR REDUCING THE KILLED ENTITY'S HITPOINTDIFFERENCE
-                    if (loseHeartsWhenKilledByPlayer || loseHeartsWhenKilledByMob || loseHeartsWhenKilledByEnvironment) {
-                        if (killerEntity != null) { // IF KILLER ENTITY EXISTS
-                            if (killedEntity != killerEntity) { // IF KILLER ENTITY ISNT SELF/ IF A KILLER KILLED OUR GUY
-                                if (killerEntityIsPlayer) { // IF THEY ARE A PLAYER
-                                    if (!loseHeartsWhenKilledByPlayer) {
-                                        return;
-                                    }
-                                } else if (!loseHeartsWhenKilledByMob) {
-                                    return;
-                                }
-                            } else if (!loseHeartsWhenKilledByPlayer) {
-                                return;
-                            }
-                        } else if (!loseHeartsWhenKilledByEnvironment) {
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-
-                    // recored new MAXHP value for user
-                    lifestealData.setValue(
-                        LSConstants.HEALTH_DIFFERENCE,
-                        HeartDifference - amountOfHealthLostUponLoss
-                    );
-
-                    // drop hearts at location
-                    int heartsDropped = amountOfHealthLostUponLoss / 2;
-                    lifestealData.refreshHealth(false);
-                    if (LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                        LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
-                    }
-                    // record number of hearts dropped
-                    lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);
-
-                }
+            // TRANSFER HEARTS
+            if (disableLifesteal) {   
+                return;
+            }
+            // Give Hearts to KILLER (player kill)
+            else if (loseHeartsWhenKilledByPlayer && killerIsPlayer && !killerIsSelf) {                
+                increaseHealth(killerEntity, healthDrop, killedEntity);
+            }
+            // Drop hearts in world (suicide)
+            else if (loseHeartsWhenKilledByPlayer && killerIsSelf && heartCrystalCanDrop){
+                LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
+            }
+            // Drop Hearts in world (mob kill)
+            else if (loseHeartsWhenKilledByMob && killerIsMob && heartCrystalCanDrop){
+                LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
+            }
+            // Drop Hearts in world (environment kill)
+            else if (loseHeartsWhenKilledByEnvironment && heartCrystalCanDrop){
+                LSUtil.ripHeartCrystalFromPlayer(killedEntity, heartsDropped);
             }
         });
     }

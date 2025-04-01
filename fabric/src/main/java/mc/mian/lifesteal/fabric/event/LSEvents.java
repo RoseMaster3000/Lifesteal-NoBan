@@ -60,7 +60,6 @@ public class LSEvents {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             ServerPlayer player = handler.getPlayer();
             Optional<LSData> newDataOptional = LSData.get(player);
-
             if (newDataOptional.isPresent()) {
                 LSData newData = newDataOptional.get();
                 newData.refreshHealth(false);

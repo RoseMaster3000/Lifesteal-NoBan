@@ -1,0 +1,1854 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"gem",
+				"gemsNeeded"
+			],
+			[
+				"E",
+				"EntitledCut"
+			],
+			[
+				"player",
+				"PlayerShare"
+			],
+			[
+				"int",
+				"interstitial"
+			],
+			[
+				"inter",
+				"interstitial"
+			],
+			[
+				"incr",
+				"increment"
+			],
+			[
+				"rese",
+				"reset_admin_cash"
+			],
+			[
+				"Adm",
+				"AdminPayout"
+			],
+			[
+				"GEM",
+				"GEM_MINIMUM_DATE"
+			],
+			[
+				"ene",
+				"entitledPayout"
+			],
+			[
+				"En",
+				"EntitledCut"
+			],
+			[
+				"game",
+				"gamerScore"
+			],
+			[
+				"agg",
+				"aggregate"
+			],
+			[
+				"get_",
+				"get_ecpm"
+			],
+			[
+				"get",
+				"get_ecpm"
+			],
+			[
+				"day",
+				"dayRange"
+			],
+			[
+				"vei",
+				"view_count"
+			],
+			[
+				"new",
+				"newrecord"
+			],
+			[
+				"reve",
+				"revenue_sum"
+			],
+			[
+				"doc",
+				"doc_id"
+			],
+			[
+				"user",
+				"userID"
+			],
+			[
+				"fet",
+				"fetch_user"
+			],
+			[
+				"fetch",
+				"fetch_user"
+			],
+			[
+				"old",
+				"old_username"
+			],
+			[
+				"gen",
+				"generateDeleteBox"
+			],
+			[
+				"Tot",
+				"TotalPayout"
+			],
+			[
+				"mini",
+				"minimal_ad_count"
+			],
+			[
+				"Single",
+				"SingleRewarded"
+			],
+			[
+				"re",
+				"redeemed"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "gradle.properties",
+			"settings":
+			{
+				"buffer_size": 1931,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					7,
+					1,
+					"left_delete",
+					null,
+					"AQAAAPMBAAAAAAAA8wEAAAAAAAABAAAANw",
+					"AQAAAAAAAAABAAAA9AEAAAAAAAD0AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					8,
+					1,
+					"insert",
+					{
+						"characters": "8"
+					},
+					"AQAAAPMBAAAAAAAA9AEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA8wEAAAAAAADzAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					11,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIECAAAAAAAAgQIAAAAAAAAtAAAAIHdpdGggcHJvdGVjdGlvbiBmb3IgcGxheWVycyB3aXRoIGZldyBoZWFydHMh",
+					"AQAAAAAAAAABAAAArgIAAAAAAACBAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIACAAAAAAAAgAIAAAAAAAABAAAALA",
+					"AQAAAAAAAAABAAAAgQIAAAAAAACBAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "."
+					},
+					"AQAAAIACAAAAAAAAgQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAIAAAAAAACAAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAIECAAAAAAAAggIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgQIAAAAAAACBAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					2,
+					"left_delete",
+					null,
+					"AgAAAIECAAAAAAAAgQIAAAAAAAABAAAAIIACAAAAAAAAgAIAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAAggIAAAAAAACCAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": ","
+					},
+					"AQAAAIACAAAAAAAAgQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAIAAAAAAACAAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAIECAAAAAAAAggIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgQIAAAAAAACBAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"insert",
+					{
+						"characters": "but"
+					},
+					"AwAAAIICAAAAAAAAgwIAAAAAAAAAAAAAgwIAAAAAAACEAgAAAAAAAAAAAACEAgAAAAAAAIUCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAggIAAAAAAACCAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					19,
+					1,
+					"insert",
+					{
+						"characters": " you"
+					},
+					"BAAAAIUCAAAAAAAAhgIAAAAAAAAAAAAAhgIAAAAAAACHAgAAAAAAAAAAAACHAgAAAAAAAIgCAAAAAAAAAAAAAIgCAAAAAAAAiQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhQIAAAAAAACFAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": " don't"
+					},
+					"BgAAAIkCAAAAAAAAigIAAAAAAAAAAAAAigIAAAAAAACLAgAAAAAAAAAAAACLAgAAAAAAAIwCAAAAAAAAAAAAAIwCAAAAAAAAjQIAAAAAAAAAAAAAjQIAAAAAAACOAgAAAAAAAAAAAACOAgAAAAAAAI8CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiQIAAAAAAACJAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					21,
+					1,
+					"insert",
+					{
+						"characters": " get"
+					},
+					"BAAAAI8CAAAAAAAAkAIAAAAAAAAAAAAAkAIAAAAAAACRAgAAAAAAAAAAAACRAgAAAAAAAJICAAAAAAAAAAAAAJICAAAAAAAAkwIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjwIAAAAAAACPAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					1,
+					"insert",
+					{
+						"characters": " banned"
+					},
+					"BwAAAJMCAAAAAAAAlAIAAAAAAAAAAAAAlAIAAAAAAACVAgAAAAAAAAAAAACVAgAAAAAAAJYCAAAAAAAAAAAAAJYCAAAAAAAAlwIAAAAAAAAAAAAAlwIAAAAAAACYAgAAAAAAAAAAAACYAgAAAAAAAJkCAAAAAAAAAAAAAJkCAAAAAAAAmgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwIAAAAAAACTAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					24,
+					1,
+					"insert",
+					{
+						"characters": "can't"
+					},
+					"BgAAAIoCAAAAAAAAiwIAAAAAAAAAAAAAiwIAAAAAAACLAgAAAAAAABAAAABkb24ndCBnZXQgYmFubmVkiwIAAAAAAACMAgAAAAAAAAAAAACMAgAAAAAAAI0CAAAAAAAAAAAAAI0CAAAAAAAAjgIAAAAAAAAAAAAAjgIAAAAAAACPAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmgIAAAAAAACKAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					25,
+					1,
+					"insert",
+					{
+						"characters": " die"
+					},
+					"BAAAAI8CAAAAAAAAkAIAAAAAAAAAAAAAkAIAAAAAAACRAgAAAAAAAAAAAACRAgAAAAAAAJICAAAAAAAAAAAAAJICAAAAAAAAkwIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjwIAAAAAAACPAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					26,
+					1,
+					"insert",
+					{
+						"characters": " forever."
+					},
+					"CQAAAJMCAAAAAAAAlAIAAAAAAAAAAAAAlAIAAAAAAACVAgAAAAAAAAAAAACVAgAAAAAAAJYCAAAAAAAAAAAAAJYCAAAAAAAAlwIAAAAAAAAAAAAAlwIAAAAAAACYAgAAAAAAAAAAAACYAgAAAAAAAJkCAAAAAAAAAAAAAJkCAAAAAAAAmgIAAAAAAAAAAAAAmgIAAAAAAACbAgAAAAAAAAAAAACbAgAAAAAAAJwCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwIAAAAAAACTAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					29,
+					1,
+					"insert",
+					{
+						"characters": "weak"
+					},
+					"BQAAAIYCAAAAAAAAhwIAAAAAAAAAAAAAhwIAAAAAAACHAgAAAAAAABYAAAB5b3UgY2FuJ3QgZGllIGZvcmV2ZXIuhwIAAAAAAACIAgAAAAAAAAAAAACIAgAAAAAAAIkCAAAAAAAAAAAAAIkCAAAAAAAAigIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnAIAAAAAAACGAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": " player"
+					},
+					"BwAAAIoCAAAAAAAAiwIAAAAAAAAAAAAAiwIAAAAAAACMAgAAAAAAAAAAAACMAgAAAAAAAI0CAAAAAAAAAAAAAI0CAAAAAAAAjgIAAAAAAAAAAAAAjgIAAAAAAACPAgAAAAAAAAAAAACPAgAAAAAAAJACAAAAAAAAAAAAAJACAAAAAAAAkQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAigIAAAAAAACKAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					31,
+					1,
+					"insert",
+					{
+						"characters": " can't"
+					},
+					"BgAAAJECAAAAAAAAkgIAAAAAAAAAAAAAkgIAAAAAAACTAgAAAAAAAAAAAACTAgAAAAAAAJQCAAAAAAAAAAAAAJQCAAAAAAAAlQIAAAAAAAAAAAAAlQIAAAAAAACWAgAAAAAAAAAAAACWAgAAAAAAAJcCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkQIAAAAAAACRAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					32,
+					1,
+					"insert",
+					{
+						"characters": " die"
+					},
+					"BAAAAJcCAAAAAAAAmAIAAAAAAAAAAAAAmAIAAAAAAACZAgAAAAAAAAAAAACZAgAAAAAAAJoCAAAAAAAAAAAAAJoCAAAAAAAAmwIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlwIAAAAAAACXAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					36,
+					1,
+					"insert",
+					{
+						"characters": "di"
+					},
+					"AwAAAJICAAAAAAAAkwIAAAAAAAAAAAAAkwIAAAAAAACTAgAAAAAAAAMAAABjYW6TAgAAAAAAAJQCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQIAAAAAAACSAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					37,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJMCAAAAAAAAkwIAAAAAAAABAAAAaQ",
+					"AQAAAAAAAAABAAAAlAIAAAAAAACUAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"insert",
+					{
+						"characters": "ont"
+					},
+					"AwAAAJMCAAAAAAAAlAIAAAAAAAAAAAAAlAIAAAAAAACVAgAAAAAAAAAAAACVAgAAAAAAAJYCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwIAAAAAAACTAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					39,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJUCAAAAAAAAlQIAAAAAAAABAAAAdA",
+					"AQAAAAAAAAABAAAAlgIAAAAAAACWAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					40,
+					1,
+					"insert",
+					{
+						"characters": "t"
+					},
+					"AQAAAJUCAAAAAAAAlgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQIAAAAAAACVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					41,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJUCAAAAAAAAlQIAAAAAAAABAAAAdA",
+					"AQAAAAAAAAABAAAAlgIAAAAAAACWAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					43,
+					1,
+					"insert",
+					{
+						"characters": "."
+					},
+					"AQAAAJsCAAAAAAAAnAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmwIAAAAAAACbAgAAAAAAAP///////+9/"
+				],
+				[
+					44,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJsCAAAAAAAAmwIAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAAnAIAAAAAAACcAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					45,
+					1,
+					"insert",
+					{
+						"characters": "!@"
+					},
+					"AgAAAJsCAAAAAAAAnAIAAAAAAAAAAAAAnAIAAAAAAACdAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmwIAAAAAAACbAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					46,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJwCAAAAAAAAnAIAAAAAAAABAAAAQA",
+					"AQAAAAAAAAABAAAAnQIAAAAAAACdAgAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "common/src/main/java/mc/mian/lifesteal/mixin/PlayerMixin.java",
+			"settings":
+			{
+				"buffer_size": 7821,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					34,
+					1,
+					"insert",
+					{
+						"characters": ")"
+					},
+					"AQAAACUbAAAAAAAAJhsAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAJRsAAAAAAAAlGwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					35,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAACYbAAAAAAAAJxsAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAJhsAAAAAAAAmGwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGoTAAAAAAAAahMAAAAAAAABAAAAKA",
+					"AQAAAAAAAAABAAAAaxMAAAAAAABrEwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					41,
+					1,
+					"insert",
+					{
+						"characters": "("
+					},
+					"AQAAAH0TAAAAAAAAfhMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfRMAAAAAAAB9EwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					44,
+					1,
+					"insert",
+					{
+						"characters": "("
+					},
+					"AQAAAGoTAAAAAAAAaxMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAahMAAAAAAABqEwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					46,
+					1,
+					"insert",
+					{
+						"characters": ")"
+					},
+					"AQAAAJITAAAAAAAAkxMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkhMAAAAAAACSEwAAAAAAAP///////+9/"
+				],
+				[
+					47,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAJMTAAAAAAAAlBMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkxMAAAAAAACTEwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					49,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAEcTAAAAAAAASBMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAARxMAAAAAAABHEwAAAAAAAAAAAAAA4I5A"
+				],
+				[
+					57,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAKkQAAAAAAAAqhAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqRAAAAAAAACpEAAAAAAAAP///////+9/"
+				],
+				[
+					71,
+					1,
+					"insert",
+					{
+						"characters": "\n//"
+					},
+					"BAAAAFkZAAAAAAAAWhkAAAAAAAAAAAAAWhkAAAAAAABmGQAAAAAAAAAAAABmGQAAAAAAAGcZAAAAAAAAAAAAAGcZAAAAAAAAaBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWRkAAAAAAABZGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					72,
+					1,
+					"insert",
+					{
+						"characters": " Drop"
+					},
+					"BQAAAGgZAAAAAAAAaRkAAAAAAAAAAAAAaRkAAAAAAABqGQAAAAAAAAAAAABqGQAAAAAAAGsZAAAAAAAAAAAAAGsZAAAAAAAAbBkAAAAAAAAAAAAAbBkAAAAAAABtGQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAaBkAAAAAAABoGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					73,
+					1,
+					"insert",
+					{
+						"characters": " hearts"
+					},
+					"BwAAAG0ZAAAAAAAAbhkAAAAAAAAAAAAAbhkAAAAAAABvGQAAAAAAAAAAAABvGQAAAAAAAHAZAAAAAAAAAAAAAHAZAAAAAAAAcRkAAAAAAAAAAAAAcRkAAAAAAAByGQAAAAAAAAAAAAByGQAAAAAAAHMZAAAAAAAAAAAAAHMZAAAAAAAAdBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbRkAAAAAAABtGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					74,
+					1,
+					"insert",
+					{
+						"characters": " in"
+					},
+					"AwAAAHQZAAAAAAAAdRkAAAAAAAAAAAAAdRkAAAAAAAB2GQAAAAAAAAAAAAB2GQAAAAAAAHcZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdBkAAAAAAAB0GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					75,
+					1,
+					"insert",
+					{
+						"characters": " world"
+					},
+					"BgAAAHcZAAAAAAAAeBkAAAAAAAAAAAAAeBkAAAAAAAB5GQAAAAAAAAAAAAB5GQAAAAAAAHoZAAAAAAAAAAAAAHoZAAAAAAAAexkAAAAAAAAAAAAAexkAAAAAAAB8GQAAAAAAAAAAAAB8GQAAAAAAAH0ZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdxkAAAAAAAB3GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					76,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAH0ZAAAAAAAAfhkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfRkAAAAAAAB9GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					77,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAH4ZAAAAAAAAgBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfhkAAAAAAAB+GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					78,
+					1,
+					"insert",
+					{
+						"characters": "suicide"
+					},
+					"BwAAAH8ZAAAAAAAAgBkAAAAAAAAAAAAAgBkAAAAAAACBGQAAAAAAAAAAAACBGQAAAAAAAIIZAAAAAAAAAAAAAIIZAAAAAAAAgxkAAAAAAAAAAAAAgxkAAAAAAACEGQAAAAAAAAAAAACEGQAAAAAAAIUZAAAAAAAAAAAAAIUZAAAAAAAAhhkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfxkAAAAAAAB/GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					80,
+					1,
+					"insert",
+					{
+						"characters": "\nels"
+					},
+					"BQAAAIcZAAAAAAAAiBkAAAAAAAAAAAAAiBkAAAAAAACUGQAAAAAAAAAAAACUGQAAAAAAAJUZAAAAAAAAAAAAAJUZAAAAAAAAlhkAAAAAAAAAAAAAlhkAAAAAAACXGQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhxkAAAAAAACHGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					81,
+					1,
+					"insert",
+					{
+						"characters": "e"
+					},
+					"AQAAAJcZAAAAAAAAmBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlxkAAAAAAACXGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": " if"
+					},
+					"AwAAAJgZAAAAAAAAmRkAAAAAAAAAAAAAmRkAAAAAAACaGQAAAAAAAAAAAACaGQAAAAAAAJsZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmBkAAAAAAACYGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					83,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJsZAAAAAAAAnBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmxkAAAAAAACbGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					84,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAJwZAAAAAAAAnhkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnBkAAAAAAACcGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					105,
+					1,
+					"paste",
+					null,
+					"AQAAAJ0ZAAAAAAAAqRkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnRkAAAAAAACdGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					106,
+					1,
+					"insert",
+					{
+						"characters": " &&"
+					},
+					"AwAAAKkZAAAAAAAAqhkAAAAAAAAAAAAAqhkAAAAAAACrGQAAAAAAAAAAAACrGQAAAAAAAKwZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqRkAAAAAAACpGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					107,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAKwZAAAAAAAArRkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArBkAAAAAAACsGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					115,
+					1,
+					"paste",
+					null,
+					"AQAAAK0ZAAAAAAAAwBkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArRkAAAAAAACtGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					123,
+					1,
+					"paste",
+					null,
+					"AQAAAJ0ZAAAAAAAAuRkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnRkAAAAAAACdGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					124,
+					1,
+					"insert",
+					{
+						"characters": " &&"
+					},
+					"AwAAALkZAAAAAAAAuhkAAAAAAAAAAAAAuhkAAAAAAAC7GQAAAAAAAAAAAAC7GQAAAAAAALwZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuRkAAAAAAAC5GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					125,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAALwZAAAAAAAAvRkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvBkAAAAAAAC8GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					134,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"BAAAAOEZAAAAAAAA4hkAAAAAAAAAAAAA4hkAAAAAAADuGQAAAAAAAAAAAADiGQAAAAAAAOIZAAAAAAAADAAAACAgICAgICAgICAgIOIZAAAAAAAA8hkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4RkAAAAAAADhGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					135,
+					5,
+					"left_delete",
+					null,
+					"BQAAAO4ZAAAAAAAA7hkAAAAAAAAEAAAAICAgIOoZAAAAAAAA6hkAAAAAAAAEAAAAICAgIOYZAAAAAAAA5hkAAAAAAAAEAAAAICAgIOIZAAAAAAAA4hkAAAAAAAAEAAAAICAgIOEZAAAAAAAA4RkAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAA8hkAAAAAAADyGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					136,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAOEZAAAAAAAA4xkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4RkAAAAAAADhGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					137,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"BgAAAOIZAAAAAAAA4xkAAAAAAAAAAAAA4xkAAAAAAADvGQAAAAAAAAAAAADvGQAAAAAAAPAZAAAAAAAAAAAAAPAZAAAAAAAA/BkAAAAAAAAAAAAA4xkAAAAAAADjGQAAAAAAAAwAAAAgICAgICAgICAgICDjGQAAAAAAAPMZAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4hkAAAAAAADiGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					143,
+					1,
+					"paste",
+					null,
+					"AQAAAPMZAAAAAAAAMRoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA8xkAAAAAAADzGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					150,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJsYAAAAAAAAnBgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmxgAAAAAAACbGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					151,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAJwYAAAAAAAAnhgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnBgAAAAAAACcGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					152,
+					1,
+					"insert",
+					{
+						"characters": "murder"
+					},
+					"BgAAAJ0YAAAAAAAAnhgAAAAAAAAAAAAAnhgAAAAAAACfGAAAAAAAAAAAAACfGAAAAAAAAKAYAAAAAAAAAAAAAKAYAAAAAAAAoRgAAAAAAAAAAAAAoRgAAAAAAACiGAAAAAAAAAAAAACiGAAAAAAAAKMYAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnRgAAAAAAACdGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					157,
+					1,
+					"insert",
+					{
+						"characters": "player"
+					},
+					"BwAAAJ0YAAAAAAAAnhgAAAAAAAAAAAAAnhgAAAAAAACeGAAAAAAAAAYAAABtdXJkZXKeGAAAAAAAAJ8YAAAAAAAAAAAAAJ8YAAAAAAAAoBgAAAAAAAAAAAAAoBgAAAAAAAChGAAAAAAAAAAAAAChGAAAAAAAAKIYAAAAAAAAAAAAAKIYAAAAAAAAoxgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnRgAAAAAAACjGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					158,
+					1,
+					"insert",
+					{
+						"characters": " kill"
+					},
+					"BQAAAKMYAAAAAAAApBgAAAAAAAAAAAAApBgAAAAAAAClGAAAAAAAAAAAAAClGAAAAAAAAKYYAAAAAAAAAAAAAKYYAAAAAAAApxgAAAAAAAAAAAAApxgAAAAAAACoGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAoxgAAAAAAACjGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					170,
+					1,
+					"left_delete",
+					null,
+					"AQAAADgTAAAAAAAAOBMAAAAAAAABAAAAIQ",
+					"AQAAAAAAAAABAAAAORMAAAAAAAA5EwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					171,
+					1,
+					"insert",
+					{
+						"characters": "="
+					},
+					"AQAAADgTAAAAAAAAORMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOBMAAAAAAAA4EwAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "common/src/main/java/mc/mian/lifesteal/util/LSUtil.java",
+			"settings":
+			{
+				"buffer_size": 13870,
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		},
+		{
+			"file": "fabric/src/main/java/mc/mian/lifesteal/fabric/event/LSEvents.java",
+			"settings":
+			{
+				"buffer_size": 3107,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					9,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGgLAAAAAAAAaAsAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAaQsAAAAAAABpCwAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"json",
+				"JSON Reindent: reindent file or selection"
+			],
+			[
+				"mini",
+				"Minecraft Format: Minify (compress) Minecraft Command"
+			],
+			[
+				"i3",
+				"Set Syntax: i3-wm Config"
+			],
+			[
+				"text",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"CLOSE",
+				"Project: Close"
+			],
+			[
+				"bash",
+				"Set Syntax: Bash"
+			],
+			[
+				"lang",
+				"Set Syntax: RenpyLanguage"
+			],
+			[
+				"zsh",
+				"UI: Customize Color Scheme"
+			],
+			[
+				"sett",
+				"Preferences: Settings"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"terminal",
+				"Preferences: Terminal Settings – Default"
+			],
+			[
+				"installk",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main/java",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main/java/mc",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main/java/mc/mian",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main/java/mc/mian/lifesteal",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/common/src/main/java/mc/mian/lifesteal/mixin",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc/mian",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc/mian/lifesteal",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc/mian/lifesteal/fabric",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc/mian/lifesteal/fabric/event"
+	],
+	"file_history":
+	[
+		"/home/shahrose/Projects/Minecraft/todo",
+		"/home/shahrose/Projects/Minecraft/cobblemon/common/src/main/kotlin/com/cobblemon/mod/common/world/gamerules/CobblemonGameRules.kt",
+		"/home/shahrose/Projects/Minecraft/cobblemon/common/src/main/java/com/cobblemon/mod/common/mixin/PlayerMixin.java",
+		"/home/shahrose/.local/share/PrismLauncher/instances/PokeJong/minecraft/crash-reports/crash-2025-03-29_22.56.32-client.txt",
+		"/home/shahrose/Projects/Minecraft/PokeJong/minecraft/config/server-join-commands.txt",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/fabric/src/main/java/mc/mian/lifesteal/fabric/event/LSEvents.java",
+		"/home/shahrose/Projects/Minecraft/Lifesteal-RM3/gradle.properties",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/SECRET.py",
+		"/home/shahrose/Projects/PaypalBridge/todo.txt",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/database/tinydb.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/ecpm.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/website.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/static/cash.css",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/templates/dash-users.html",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/templates/cash-counter.html",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/templates/dash-buttons.html",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/templates/dashboard.html",
+		"/home/shahrose/Projects/PaypalBridge/revenue.json",
+		"/home/shahrose/Projects/PaypalBridge/admin.json",
+		"/home/shahrose/Projects/PaypalBridge/DatabaseStorage/tinydb.json",
+		"/home/shahrose/Projects/PaypalBridge/test.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/paypal.py",
+		"/home/shahrose/Projects/PaypalBridge/ecpm-average.json",
+		"/home/shahrose/Projects/PaypalBridge/virt/lib/python3.13/site-packages/pip/_vendor/packaging/version.py",
+		"/home/shahrose/Projects/PaypalBridge/ecpm-30.json",
+		"/home/shahrose/Projects/PaypalBridge/ecpm.json",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/admin.py",
+		"/home/shahrose/Downloads/Cobblemon Biopshere Expanded/data/cobblemon/spawn_pool_world/0001_bulbasaur.json",
+		"/home/shahrose/Projects/Minecraft/Cobblemon Biomes Expanded.2/pack.mcmeta",
+		"/home/shahrose/Projects/Minecraft/Cobblemon-Biome-Compatability/pack.mcmeta",
+		"/home/shahrose/Downloads/recipes",
+		"/home/shahrose/Projects/PaypalBridge/Readme.md",
+		"/home/shahrose/Projects/ZigZag-racing-3D/Assets/Scripts/Wallet Scene/WalletManager2.cs",
+		"/home/shahrose/Projects/PaypalBridge/main.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/decorators.py",
+		"/home/shahrose/Projects/PaypalBridge/requirements.txt",
+		"/home/shahrose/Projects/ZigZag-racing-3D/Assets/Scripts/flask server/ServerConnector.cs",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/static/dashboard.css",
+		"/home/shahrose/Projects/PaypalBridge/test.sh",
+		"/home/shahrose/Projects/PaypalBridge/.gitattributes",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/todo.txt",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/database/firebase.py",
+		"/home/shahrose/Projects/PaypalBridge/run.bat",
+		"/home/shahrose/Projects/PaypalBridge/setup.sh",
+		"/home/shahrose/Projects/PaypalBridge/setup.bat",
+		"/home/shahrose/Projects/PaypalBridge/.gitignore",
+		"/home/shahrose/Projects/PaypalBridge/run.sh",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge/firebaseFix.py",
+		"/home/shahrose/Projects/PaypalBridge/PaypalBridge.sublime-project",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/1-23-25-notes",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/Arch",
+		"/home/shahrose/Projects/arch-notes/Arch Install/7-arch-apps",
+		"/home/shahrose/Projects/arch-notes/Arch Install/1-intro",
+		"/home/shahrose/Projects/arch-notes/Arch Install/4-arch-pacman",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/Browser",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/PiNAS",
+		"/home/shahrose/Projects/arch-notes/Symlinks/i3-config",
+		"/home/shahrose/Projects/RobotixCards/hex.py",
+		"/home/shahrose/Projects/arch-notes/Configs/browser-nightTab.json",
+		"/home/shahrose/homelab-stuff",
+		"/run/user/1000/gvfs/smb-share:server=nas.local,share=nas/hdd3000/Code Geass (2006)/Season 4/Code Geass 1 - Initiation.nfo",
+		"/home/shahrose/Projects/arch-notes/Configs/sublime-settings.txt",
+		"/home/shahrose/Tools/split2flac/split2flac",
+		"/home/shahrose/.ssh/homelab.pub",
+		"/run/user/1000/gvfs/smb-share:server=nas.local,share=nas/hdd3000/Bluey (2018)/Season 1/[TGx]Do.txt",
+		"/home/shahrose/.ssh/known_hosts",
+		"/home/shahrose/Projects/ESP/dfplayer/notes",
+		"/home/shahrose/Projects/RobotixCards/sheets/robots.csv",
+		"/home/shahrose/Projects/arch-notes/Configs/i3-config.txt",
+		"/home/shahrose/Projects/arch-notes/Arch Install/8-appearance",
+		"/home/shahrose/Projects/arch-notes/Configs/picom.conf",
+		"/home/shahrose/Projects/arch-notes/Arch Install/3-arch-install",
+		"/home/shahrose/lena",
+		"/home/shahrose/Projects/Project-Tenbou/BOILER.sublime-project",
+		"/home/shahrose/nano",
+		"/etc/xdg/picom.conf",
+		"/home/shahrose/picom ",
+		"/home/shahrose/Projects/MIO/mio/__init__.py",
+		"/home/shahrose/Projects/MIO/local.py",
+		"/home/shahrose/Projects/arch-notes/Arch Install/6-arch-basics",
+		"/home/shahrose/.alacritty.toml",
+		"/home/shahrose/Projects/arch-notes/Arch Install/2-arch-boot",
+		"/home/shahrose/.config/i3status-rust/config.toml",
+		"/home/shahrose/.zoom/logs/zoom_stdout_stderr.log",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/Home-Assistant",
+		"/home/shahrose/.config/gazatu.xyz/emoji-picker.ini",
+		"/home/shahrose/Michael",
+		"/home/shahrose/Projects/arch-notes/Arch Install/5-arch-gui",
+		"/home/shahrose/Projects/pyschool/Unit13 - Algorithms/0_Preface.py",
+		"/home/shahrose/Projects/pyschool/Unit08 - Import/1_MultiFileCode.py",
+		"/home/shahrose/Projects/arch-notes/Configs/alacritty.toml",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/valetudo",
+		"/home/shahrose/Projects/arch-notes/Configs/.p10k.zsh",
+		"/home/shahrose/.ssh/gitlab2",
+		"/home/shahrose/Projects/arch-notes/Configs/browser-DarkReader.json",
+		"/home/shahrose/Downloads/Dark-Reader-Settings.json",
+		"/var/lib/hass/configuration.yaml",
+		"/var/lib/hass/automations.yaml",
+		"/home/shahrose/Downloads/Redirector (1).json",
+		"/home/shahrose/Projects/arch-notes/Configs/browser-Redirector.json",
+		"/home/shahrose/Projects/arch-notes/Configs/thunar.uca.xml",
+		"/home/shahrose/.config/Thunar/uca.xml",
+		"/home/shahrose/Downloads/phone+bluebubbles",
+		"/home/shahrose/Projects/arch-notes/Configs/i3-rust-status.txt",
+		"/home/shahrose/Downloads/nightTab backup - 2023.08.11 - 00 31 43.json",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/Linux",
+		"/home/shahrose/Projects/arch-notes/Symlinks/config.toml",
+		"/etc/pacman.d/mirrorlist",
+		"/etc/X11/xorg.conf",
+		"/home/shahrose/Projects/arch-notes/fixpacman.sh",
+		"/home/shahrose/Work/turn_game/Project+Submission.txt",
+		"/home/shahrose/Work/turn_game/text.txt",
+		"/home/shahrose/Projects/Florasoft-Server/static/svg/tempfile.svg",
+		"/home/shahrose/Projects/Florasoft-Server/static/svg/tulip.svg",
+		"/home/shahrose/tempfile.svg",
+		"/home/shahrose/Projects/arch-notes/Cheatsheet/Windows",
+		"/home/shahrose/Tools/AirStatus/main.py",
+		"/home/shahrose/Platformer/Assets/PlayerControl.cs",
+		"/home/shahrose/Downloads/AlphaJong_1.3.1.user.js",
+		"/home/shahrose/.zprofile",
+		"/etc/security/pam_env.conf",
+		"/home/shahrose/Projects/arch-notes/Symlinks/.zshrc",
+		"/home/shahrose/Projects/arch-notes/Configs/zshrc",
+		"/home/shahrose/.bash_profile",
+		"/home/shahrose/Downloads/nick.py",
+		"/home/shahrose/Downloads/dtn.py",
+		"/home/shahrose/Downloads/GIMP3-ML-GIMP3-ML/install.cmd",
+		"/home/shahrose/School/AM2020/am-schedule"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 149.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "gradle.properties",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1931,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								292,
+								292
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/JavaProperties.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "common/src/main/java/mc/mian/lifesteal/mixin/PlayerMixin.java",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7821,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5567,
+								5567
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										7197,
+										7198
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										4456,
+										4457
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1594.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "common/src/main/java/mc/mian/lifesteal/util/LSUtil.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12806,
+								12813
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										12825,
+										12826
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										12788,
+										12789
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5890.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "fabric/src/main/java/mc/mian/lifesteal/fabric/event/LSEvents.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3107,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3069,
+								3069
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3082,
+										3083
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2966,
+										2967
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 504.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 50.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 559.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Lifesteal-RM3.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"server",
+				"server-join-commands.txt"
+			],
+			[
+				"nigh",
+				"Configs/browser-nightTab.json"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ziug",
+				"~/Projects/ZigZag-racing-3D/ZigZagRacer.sublime-project"
+			],
+			[
+				"",
+				"~/Projects/ZigZag-racing-3D/ZigZagRacer.sublime-project"
+			],
+			[
+				"zig",
+				"~/Projects/ZigZag-racing-3D/ZigZagRacer.sublime-project"
+			],
+			[
+				"pa",
+				"~/.ssh/PaypalBridge.sublime-project"
+			],
+			[
+				"pay",
+				"~/.ssh/PaypalBridge.sublime-project"
+			],
+			[
+				"ziu",
+				"~/Projects/ZigZag-racing-3D/ZigZagRacer.sublime-project"
+			],
+			[
+				"zi",
+				"~/Projects/ZigZag-racing-3D/ZigZagRacer.sublime-project"
+			],
+			[
+				"robot",
+				"~/Projects/RobotixCards/ROBOT-CARDS.sublime-project"
+			],
+			[
+				"CMA",
+				"~/Projects/CAMS/CAMS.sublime-project"
+			],
+			[
+				"nar",
+				"~/Projects/Narde-Server/NARDE-SERVER.sublime-project"
+			],
+			[
+				"esp",
+				"~/Projects/ESP/ESP.sublime-project"
+			],
+			[
+				"ar",
+				"~/Projects/arch-notes/ARCH.sublime-project"
+			],
+			[
+				"rii",
+				"~/Projects/RiichiClubs/RIICHI-CLUBS.sublime-project"
+			],
+			[
+				"pys",
+				"~/Projects/pyschool/PYSCHOOL.sublime-project"
+			],
+			[
+				"py",
+				"~/Projects/pyschool/PYSCHOOL.sublime-project"
+			],
+			[
+				"auto",
+				"~/Projects/AutoResume/AutoResume.sublime-project"
+			],
+			[
+				"arc",
+				"~/Projects/arch-notes/ARCH.sublime-project"
+			],
+			[
+				"na",
+				"~/Projects/Narde/NARDE.sublime-project"
+			],
+			[
+				"life",
+				"~/Projects/LIFE/LIFE.sublime-project"
+			],
+			[
+				"nard",
+				"~/Projects/Narde-Server/NARDE-SERVER.sublime-project"
+			],
+			[
+				"po",
+				"~/Projects/pyschool/PYSCHOOL.sublime-project"
+			],
+			[
+				"n",
+				"~/Projects/Narde/NARDE.sublime-project"
+			],
+			[
+				"ai",
+				"~/Projects/AI-Tools/AI.sublime-project"
+			],
+			[
+				"close",
+				"~/Projects/Florasoft-Server/FLORASOFT.sublime-project"
+			],
+			[
+				"pla",
+				"~/Platformer/platformer.sublime-project"
+			],
+			[
+				"ASI",
+				"~/Projects/AI-Tools/AI.sublime-project"
+			],
+			[
+				"fl",
+				"~/Projects/Florasoft-Server/FLORASOFT.sublime-project"
+			],
+			[
+				"bal",
+				"~/Projects/Narde/BACKGAMMON.sublime-project"
+			],
+			[
+				"sc",
+				"~/School/SCHOOL.sublime-project"
+			],
+			[
+				"back",
+				"~/Projects/Narde/BACKGAMMON.sublime-project"
+			],
+			[
+				"schoo",
+				"~/School/SCHOOL.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 297.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 418.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
