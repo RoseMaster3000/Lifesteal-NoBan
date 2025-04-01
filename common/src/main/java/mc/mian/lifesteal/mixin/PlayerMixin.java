@@ -13,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -80,6 +81,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final boolean loseHeartsWhenKilledByMob = LifeSteal.config.loseHeartsWhenKilledByMob.get();
         final boolean loseHeartsWhenKilledByEnvironment = LifeSteal.config.loseHeartsWhenKilledByEnvironment.get();
         final boolean heartCrystalCanDrop = LifeSteal.config.playerDropsHeartCrystalWhenKilled.get();
+        final int safeRadius = LifeSteal.config.safeZoneRadius.get();
 
         final int weakPlayerThreshold = LifeSteal.config.weakPlayerThreshold.get();
 
@@ -97,6 +99,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             boolean killerIsSelf = (killerEntity == killedEntity);
             boolean killerIsMob = (!killerIsPlayer && (killerEntity !=null));
             ServerPlayer killerPlayer = killerIsPlayer ? (ServerPlayer) killerEntity : null;
+            Vec3 pos = killedEntity.position();
 
             // CALCULATE HEARTS DROPPED (if the person who died has lots of MAXHP, they will drop more hearts)
             // (drop 1 extra heart for every 10 max HP --> 2 health == 1 heart)
@@ -105,11 +108,18 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             healthDrop += amountOfHealthLostUponLossConfig; 
             int heartsDropped = healthDrop / 2;
 
-            // DECREMENT HEALTH  / RECORD DROPPED HEARTS
+
+            // no heart loss if player is weakling
             if (weakPlayerThreshold >= HeartDifference) {
                 lifestealData.setValue(LSConstants.HEARTS_DROPPED, 0);
                 return;
             }
+            // no heart loss in save zone (above ground 50+)
+            else if ((pos.x <= safeRadius) && (pos.z <= safeRadius) && (pos.y > 50)) {
+                lifestealData.setValue(LSConstants.HEARTS_DROPPED, 0);
+                return;
+            }
+            // DECREMENT HEALTH  / RECORD DROPPED HEARTS
             else{
                 // record heart drop
                 lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);

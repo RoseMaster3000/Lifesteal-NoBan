@@ -13,6 +13,7 @@ public class LSConfig {
     public final ForgeConfigSpec.BooleanValue loseHeartsWhenKilledByEnvironment;
     public final ForgeConfigSpec.IntValue weakPlayerThreshold;
     public final ForgeConfigSpec.IntValue extraHeartDropPercent;
+    public final ForgeConfigSpec.IntValue safeZoneRadius;
 
     public final ForgeConfigSpec.IntValue deathDuration;
     public final ForgeConfigSpec.IntValue amountOfHealthLostUponLoss;
@@ -71,6 +72,7 @@ public class LSConfig {
         this.loseHeartsWhenKilledByMob = buildBoolean(builder, "Lose heart(s) when killed by a mob:", true, "Determines if players should lose hearts when killed by mobs");
         this.loseHeartsWhenKilledByEnvironment = buildBoolean(builder, "Lose heart(s) when killed by the environment:", true, "Determines if players lose hearts when killed by the environment. (Lava, fall damage, etc)");
         this.weakPlayerThreshold = buildInt(builder, "Weak player threshold:", -20, -20, Integer.MAX_VALUE, "Inclusive threshold where players are considered weak & do not lose hearts; -20 disables this feature.");
+        this.safeZoneRadius = buildInt(builder, "Safe Zone block radius:", 100, 0, Integer.MAX_VALUE, "Radius from world center where hearts do not drop at all; 0 disables this feature.");
         builder.pop();
 
         builder.comment("Settings for Items and Blocks");
