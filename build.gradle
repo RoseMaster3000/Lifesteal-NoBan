@@ -123,11 +123,28 @@ subprojects {
 
         compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
         compileOnly 'com.google.errorprone:error_prone_annotations:2.11.0'
-        
-        // Remove or comment out this line as it's for Fabric loader specifically
-        // modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-        // modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+
     }
+
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                groupId = project.group // Use project.group for clarity here if preferred
+                // Make artifactId unique per subproject
+                artifactId = "${project.archivesBaseName}-${project.name}" // e.g., "lifesteal-common", "lifesteal-fabric"
+                version = project.version // Use project.version for clarity here if preferred
+
+                // Optional: Add POM details if needed
+                pom {
+                    name = "${mod_name} (${project.name})"
+                    // Add other POM details like description, url, licenses, developers, scm
+                }
+            }
+        }
+    }
+
 
     processResources {
         project.properties.each {

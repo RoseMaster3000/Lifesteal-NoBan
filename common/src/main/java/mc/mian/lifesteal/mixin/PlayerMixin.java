@@ -69,7 +69,12 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
 
     @Inject(method = "dropEquipment", at = @At("HEAD"))
     private void onDeath(final CallbackInfo info) {
+        playerDeathTransfer(null);
+    }
 
+    // have this player tranfer hearts to killerEntity (null ==> last hurt by mob)
+    @Override
+    public void playerDeathTransfer(LivingEntity killerEntityOverride){
         final int maximumheartsLoseable = LifeSteal.config.maximumHealthLoseable.get();
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
         // NOT USING THIS (dyanmic system)
@@ -86,7 +91,6 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         final int weakPlayerThreshold = LifeSteal.config.weakPlayerThreshold.get();
 
         LivingEntity killedEntity = this;
-
         LSData.get(killedEntity).ifPresent(lifestealData -> {
             // GATE KEEP
             if (!(killedEntity instanceof ServerPlayer)) {return;}
@@ -95,6 +99,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             // INITIALIZE VARIABLES
             int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
             LivingEntity killerEntity = killedEntity.getLastHurtByMob();
+            if (killerEntityOverride==null) {killerEntity = killerEntityOverride;}
             boolean killerIsPlayer = killerEntity instanceof ServerPlayer;
             boolean killerIsSelf = (killerEntity == killedEntity);
             boolean killerIsMob = (!killerIsPlayer && (killerEntity !=null));
@@ -104,8 +109,8 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             // CALCULATE HEARTS DROPPED (if the person who died has lots of MAXHP, they will drop more hearts)
             // (drop 1 extra heart for every 10 max HP --> 2 health == 1 heart)
             int healthDrop = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
-            healthDrop *= 2; 
-            healthDrop += amountOfHealthLostUponLossConfig; 
+            healthDrop *= 2;
+            healthDrop += amountOfHealthLostUponLossConfig;
             int heartsDropped = healthDrop / 2;
 
 
@@ -130,11 +135,11 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             }
 
             // TRANSFER HEARTS
-            if (disableLifesteal) {   
+            if (disableLifesteal) {
                 return;
             }
             // Give Hearts to KILLER (player kill)
-            else if (loseHeartsWhenKilledByPlayer && killerIsPlayer && !killerIsSelf) {                
+            else if (loseHeartsWhenKilledByPlayer && killerIsPlayer && !killerIsSelf) {
                 increaseHealth(killerEntity, healthDrop, killedEntity);
             }
             // Drop hearts in world (suicide)
@@ -151,6 +156,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             }
         });
     }
+
 
     @Inject(method = "addAdditionalSaveData", at = @At("HEAD"))
     private void addOurDataTooLol(CompoundTag compoundTag, final CallbackInfo info){

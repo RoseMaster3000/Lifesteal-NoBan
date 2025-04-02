@@ -144,11 +144,6 @@ dependencies {
         modApi(include("org.ladysnake.cardinal-components-api:cardinal-components-base:${cardinal_components_api_version}"))
         modApi(include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${cardinal_components_api_version}"))
 
-        modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-fabric")
-        modRuntimeOnly("curse.maven:modernfix-${modern_fix_id}:${modern_fix}")
-        modRuntimeOnly("curse.maven:ferritecore-${ferritecore_id}:${ferritecore}")
-        modRuntimeOnly("curse.maven:mousetweaks-${mouse_tweaks_id}:${mouse_tweaks}")
-//        modRuntimeOnly("curse.maven:configured-${configured_id}:${configured_fabric}")
     } else if(loomPlatform == 'forge') {
         forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
