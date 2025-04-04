@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+
 @Mixin(value = Player.class, priority = 1)
 public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
     @Shadow public abstract boolean killedEntity(ServerLevel level, LivingEntity entity);
@@ -30,30 +32,35 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         LSData.get(this).ifPresent(iLifestealData -> iLifestealData.refreshHealth(false));
     }
 
-    public void increaseHealth(LivingEntity killerPlayer, int hitpoint, LivingEntity killedPlayer) {
-        final int maximumhitpointsGainable = LifeSteal.config.maximumHealthGainable.get();
-        boolean alreadyGiven = false;
+    // INTERNAL heart increase method
+    // Gift hearts to a specified target player
+    private void giftHearts(LivingEntity targetPlayer, int heartAmount) {
+        LSData.get(targetPlayer).ifPresent(lifestealData -> {
+            final int maximumAllowedHP = LifeSteal.config.maximumHealthGainable.get();
+            final boolean dropAtMaximumHP = LifeSteal.config.playerDropsHeartCrystalWhenKillerHasMax.get();
+            final boolean dropCrystals = LifeSteal.config.playerDropsHeartCrystalWhenKilled.get();
+            final int proposedHP = 20 + (int) lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE) + heartAmount * 2;
 
-        LSData lsData = LSData.get(killerPlayer).orElseGet(null);
-
-        if(lsData != null){
-            if (maximumhitpointsGainable > -1 && LifeSteal.config.playerDropsHeartCrystalWhenKillerHasMax.get() && !LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                if ((int)lsData.getValue(LSConstants.HEALTH_DIFFERENCE) + hitpoint > LifeSteal.config.startingHealthDifference.get() + maximumhitpointsGainable) {
-                    LSUtil.ripHeartCrystalFromPlayer(killedPlayer);
-                    alreadyGiven = true;
-                }
+            if ((maximumAllowedHP == -1) || (proposedHP <= maximumAllowedHP)) {
+                lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, proposedHP-20);
+                lifestealData.refreshHealth(false);
+                if (heartAmount==1) {sendScreenMessage("You gained a heart!", targetPlayer);}
+                else                {sendScreenMessage("You gained " + heartAmount + " hearts!", targetPlayer);}
             }
-
-            if (!alreadyGiven) {
-                if (!LifeSteal.config.playerDropsHeartCrystalWhenKilled.get()) {
-                    LSUtil.gainHealth(killerPlayer, (int)lsData.getValue(LSConstants.HEALTH_DIFFERENCE) + hitpoint);
-                }
+            else if (dropCrystals && dropAtMaximumHP) {
+                LSUtil.ripHeartCrystalFromPlayer(targetPlayer, heartAmount);
             }
-        }
+        });
     }
 
-    private void sendScreenMessage(String message) {
-        ServerPlayer player = (ServerPlayer)(LivingEntity)this;
+    @Override
+    public void sendScreenMessage(String message){
+        sendScreenMessage(message, this);
+    }
+
+    // Send centered large red text message on screen
+    public void sendScreenMessage(String message, LivingEntity targetPlayer) {
+        ServerPlayer player = (ServerPlayer)(LivingEntity)targetPlayer;
         Component emptyTitle = Component.literal("");
         Component subtitleMessage = Component.literal(message)
                 .withStyle(style -> style.withBold(true).withItalic(true)
@@ -66,18 +73,83 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
                 new net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket(emptyTitle));
     }
 
+    // API end point
+    // Check if player can afford to lose <heartCount> hearts
+    @Override
+    public boolean hasHearts(int heartCount) {
+        LivingEntity playerEntity = this;
+        Optional<LSData> optionalLSData = LSData.get(playerEntity);
+        return optionalLSData.map(lifestealData -> {
+            int currentHealthPoints = 20 + (int) lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int currentHearts = currentHealthPoints / 2; // Assuming 1 heart = 2 HP
+            int proposedHearts = currentHearts - heartCount;
+            return (proposedHearts >= 1);
+        }).orElse(false);
+    }
+
+    // API end point
+    // Remove <heartCount> hearts from this player
+    @Override
+    public void loseHearts(int heartCount) {
+        LivingEntity playerEntity = this;
+        LSData.get(playerEntity).ifPresent(lifestealData -> {
+            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int proposedHealth = 20 + HeartDifference - heartCount*2;
+
+            // Validate Decrease...
+            if (proposedHealth < 0){
+                proposedHealth = 0; // THIS SHOULD NEVER HAPPEN...but kill them
+            }
+            // Lose Hearts
+            lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, proposedHealth-20);
+            lifestealData.refreshHealth(false);
+            // Confirmation Message
+            if (heartCount==1) {sendScreenMessage("You lost a heart...");}
+            else               {sendScreenMessage("You lost " + heartCount + " hearts...");}
+        });
+    }
+
+    // API end point
+    // Gift <heartCount> hearts to this player
+    @Override
+    public void gainHearts(int heartCount) {
+        final int maximumAllowedHP = LifeSteal.config.maximumHealthGainable.get();
+        LivingEntity playerEntity = this;
+
+        LSData.get(playerEntity).ifPresent(lifestealData -> {
+            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int proposedHealth = 20 + HeartDifference + heartCount*2;
+            // Validate Increase
+            if ((maximumAllowedHP != -1) && (proposedHealth > maximumAllowedHP)){
+                LSUtil.ripHeartCrystalFromPlayer(playerEntity, heartCount);
+                return;
+            }
+            // Gain Hearts
+            lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, proposedHealth-20);
+            lifestealData.refreshHealth(false);
+
+            // Confirmation Message
+            if (heartCount==1) {sendScreenMessage("You gained a heart!");}
+            else               {sendScreenMessage("You gained " + heartCount + " hearts!");}
+        });
+    }
+
 
     @Inject(method = "dropEquipment", at = @At("HEAD"))
     private void onDeath(final CallbackInfo info) {
-        playerDeathTransfer(null);
+        playerDeathTransfer(null, false);
     }
 
-    // have this player tranfer hearts to killerEntity (null ==> last hurt by mob)
+
+    // have this player die
+    // (transfer or drop hearts, use context)
+    // (calculate heart drop count, use context)
+    // CAN OVERWRITE killerEntity (for 3rd party mods to simulate kill...)
     @Override
-    public void playerDeathTransfer(LivingEntity killerEntityOverride){
-        final int maximumheartsLoseable = LifeSteal.config.maximumHealthLoseable.get();
+    public void playerDeathTransfer(LivingEntity killerEntityOverride,  boolean notify){
+        final int maximumHealthLoseable = LifeSteal.config.maximumHealthLoseable.get();
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
-        // NOT USING THIS (dyanmic system)
+        // NOT USING THIS (dynamic system)
         final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
         final int extraHeartDropPercentConfig = LifeSteal.config.extraHeartDropPercent.get();
         final boolean playersGainHeartsifKillednoHeart = LifeSteal.config.playersGainHeartsifKillednoHeart.get();
@@ -99,7 +171,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             // INITIALIZE VARIABLES
             int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
             LivingEntity killerEntity = killedEntity.getLastHurtByMob();
-            if (killerEntityOverride==null) {killerEntity = killerEntityOverride;}
+            if (killerEntityOverride!=null) {killerEntity = killerEntityOverride;}
             boolean killerIsPlayer = killerEntity instanceof ServerPlayer;
             boolean killerIsSelf = (killerEntity == killedEntity);
             boolean killerIsMob = (!killerIsPlayer && (killerEntity !=null));
@@ -111,8 +183,10 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             int healthDrop = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
             healthDrop *= 2;
             healthDrop += amountOfHealthLostUponLossConfig;
+            if ((maximumHealthLoseable!= -1) && (maximumHealthLoseable > healthDrop)) {
+                healthDrop = maximumHealthLoseable;
+            }
             int heartsDropped = healthDrop / 2;
-
 
             // no heart loss if player is weakling
             if (weakPlayerThreshold >= HeartDifference) {
@@ -126,12 +200,14 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             }
             // DECREMENT HEALTH  / RECORD DROPPED HEARTS
             else{
-                // record heart drop
-                lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);
                 // record new HP value for user
                 lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, HeartDifference - healthDrop);
                 // Refresh HP
                 lifestealData.refreshHealth(false);
+                // record heart drop (respawn message or immediate)
+                if (!notify) {lifestealData.setValue(LSConstants.HEARTS_DROPPED, heartsDropped);}
+                if (notify && (heartsDropped==1)) {sendScreenMessage("You lost a heart...");}
+                else if (notify) {sendScreenMessage("You lost " + heartsDropped + " hearts...");}
             }
 
             // TRANSFER HEARTS
@@ -140,7 +216,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
             }
             // Give Hearts to KILLER (player kill)
             else if (loseHeartsWhenKilledByPlayer && killerIsPlayer && !killerIsSelf) {
-                increaseHealth(killerEntity, healthDrop, killedEntity);
+                giftHearts(killerEntity, heartsDropped);
             }
             // Drop hearts in world (suicide)
             else if (loseHeartsWhenKilledByPlayer && killerIsSelf && heartCrystalCanDrop){

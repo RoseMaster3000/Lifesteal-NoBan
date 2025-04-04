@@ -288,13 +288,13 @@ public class LSUtil {
         return (!server.isSingleplayer() || (!excludeLan && server.isPublished()));
     }
 
-    public static void gainHealth(LivingEntity livingEntity, Integer health){
+    public static void gainHealth(LivingEntity livingEntity, Integer hitpointGain){
         if(livingEntity.level().isClientSide) return;
 
         LSData.get(livingEntity).ifPresent(lsData -> {
-            int newheartDifference = health != null ? health : (int) lsData.getValue(LSConstants.HEALTH_DIFFERENCE) + LifeSteal.config.heartCrystalAmountGain.get();
+            int newheartDifference = (int)lsData.getValue(LSConstants.HEALTH_DIFFERENCE) + hitpointGain;
 
-            lsData.setValue(LSConstants.HEALTH_DIFFERENCE,newheartDifference);
+            lsData.setValue(LSConstants.HEALTH_DIFFERENCE, newheartDifference);
             lsData.refreshHealth(false);
 
             if(livingEntity instanceof ServerPlayer serverPlayer)

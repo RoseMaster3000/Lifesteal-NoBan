@@ -22,7 +22,7 @@ public class LSItems {
     public static final RegistrySupplier<Item> CRYSTAL_FRAGMENT = ITEMS.register("crystal_fragment",
             () -> new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> CRYSTAL_CORE = ITEMS.register("crystal_core",
-            () -> new CrystalCoreItem(new Item.Properties().food(alwaysEdible)));
+            () -> new CrystalCoreItem(new Item.Properties()));
     public static final RegistrySupplier<Item> HEART_CRYSTAL = ITEMS.register("heart_crystal",
             () -> new HeartCrystalItem(new Item.Properties().stacksTo(1).fireResistant().food(alwaysEdible)));
     public static final RegistrySupplier<Item> REVIVE_CRYSTAL = ITEMS.register("revive_crystal",

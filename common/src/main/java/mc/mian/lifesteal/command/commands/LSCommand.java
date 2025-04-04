@@ -131,7 +131,7 @@ public class LSCommand {
         if (serverPlayer.getAdvancements().getOrStartProgress(Advancement.Builder.advancement().build(ResourceLocation.tryParse(advancementUsed))).isDone() || advancementUsed.isEmpty() || serverPlayer.isCreative()) {
             LSData lifestealData = LSData.get(serverPlayer).get();
 
-            int newHealthDifference = (int) lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE) - (LifeSteal.config.heartCrystalAmountGain.get() * amount);
+            int newHealthDifference = (int) lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE) - (2 * amount);
 
             if (maximumheartsLoseable >= 0) {
                 if (newHealthDifference < startingHitPointDifference - maximumheartsLoseable) {

@@ -66,7 +66,7 @@ public class HeartCrystalItem extends Item {
                 }
 
                 if (success.get()) {
-                    LSUtil.gainHealth(entity, null);
+                    LSUtil.gainHealth(entity, 2);
 
                     // Formula, for every hit point, increase duration of the regeneration by 50 ticks: TickDuration = MaxHealth * 50
                     if (!unnaturalHeartCrystal) {

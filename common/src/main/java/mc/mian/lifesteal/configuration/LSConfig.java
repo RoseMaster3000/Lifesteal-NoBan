@@ -27,7 +27,6 @@ public class LSConfig {
     public final ForgeConfigSpec.BooleanValue disableCores;
     public final ForgeConfigSpec.BooleanValue disableReviveCrystals;
     public final ForgeConfigSpec.BooleanValue playersGainHeartsifKillednoHeart;
-    public final ForgeConfigSpec.IntValue heartCrystalAmountGain;
     public final ForgeConfigSpec.BooleanValue crystalInstantUse;
     public final ForgeConfigSpec.DoubleValue coreHeal;
     public final ForgeConfigSpec.BooleanValue coreInstantUse;
@@ -86,7 +85,6 @@ public class LSConfig {
         builder.push("Heart Crystals");
         this.disableHeartCrystals = buildBoolean(builder, "Disable Heart Crystals:", false, "Determines if Natural Heart Cores should be disabled. (Doesn't affect Unnatural Heart Cores)");
         this.disableUnnaturalHeartCrystals = buildBoolean(builder, "Disable Unnatural Heart Crystals:", false, "Determines if Unnatural Heart Cores should be disabled. (Doesn't affect Natural Heart Cores)");
-        this.heartCrystalAmountGain = buildInt(builder, "Number of Hitpoints Heart Crystal(s) Permanently Give:", 2, 1, Integer.MAX_VALUE, "Determines how many Hitpoints are given when a Heart Crystal is used.");
         this.preventFromUsingCrystalIfMax = buildBoolean(builder, "Prevent players at max Hitpoints from using Heart Crystals:", true, "Determines if Heart Crystals can be used by players at maximum health (if a max is set)");
         this.crystalInstantUse = buildBoolean(builder, "Instantly use Heart Crystals:", false, "Determines if Heart Cores should be used instantly or eaten.");
         builder.pop();
