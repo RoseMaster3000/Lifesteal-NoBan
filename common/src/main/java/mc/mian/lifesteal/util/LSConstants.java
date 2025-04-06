@@ -82,7 +82,7 @@ public class LSConstants {
     public static final ResourceLocation TIME_KILLED = modLoc("time_killed");
     public static final ResourceLocation HEALTH_MODIFIER = modLoc("health_modifier");
     public static final ResourceLocation HEARTS_DROPPED = modLoc("hearts_dropped");
-
+    public static final ResourceLocation HEARTS_WAGERD = modLoc("hearts_wagered");
     // Loot Tables
     public static final ResourceKey<LootTable> BARREL_1_TABLE =
             createLootTable(ResourceLocation.DEFAULT_NAMESPACE,"chests/barrel_1");
@@ -123,6 +123,7 @@ public class LSConstants {
     // Biome Modifiers
     public static final ResourceLocation ADD_OVERWORLD_FEATURES = modLoc("add_overworld_features");
     public static final ResourceLocation ADD_NETHER_FEATURES = modLoc("add_nether_features");
+
 
     public static ResourceLocation modLoc(String name) {
         return ResourceLocation.fromNamespaceAndPath(LSConstants.MOD_ID, name);

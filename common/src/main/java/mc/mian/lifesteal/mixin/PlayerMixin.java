@@ -87,18 +87,76 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         }).orElse(false);
     }
 
+    // Calculate Number of hearts to lose (when you die/wager)
+    @Override
+    public int suggestWager() {
+        LivingEntity playerEntity = this;
+        Optional<LSData> optionalLSData = LSData.get(playerEntity);
+        return optionalLSData.map(lifestealData -> {
+            // Get configs
+            final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
+            final int maximumHealthLoseable = LifeSteal.config.maximumHealthLoseable.get();
+            final int extraHeartDropPercentConfig = LifeSteal.config.extraHeartDropPercent.get();
+            // Get player health
+            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            // Calculate health drop
+            int healthDrop = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
+            healthDrop *= 2;
+            healthDrop += amountOfHealthLostUponLossConfig;
+            if ((maximumHealthLoseable!= -1) && (maximumHealthLoseable > healthDrop)) {
+                healthDrop = maximumHealthLoseable;
+            }
+            return healthDrop/2;
+        }).orElse(0);
+
+    }
+
+    // Set Wager
+    @Override
+    public void setWager(int heartCount) {
+        LivingEntity playerEntity = this;
+        LSData.get(playerEntity).ifPresent(lifestealData -> {
+            int heartWager = heartCount;
+            int currentHealth = 20 + (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int proposedHealth = currentHealth - (heartWager*2);
+            // Sanitize Wager (bet maximum hearts minus 1 (so that you live)
+            if (proposedHealth <= 0){
+                proposedHealth = 2;
+                heartWager = (currentHealth/2) - 1;
+            }
+            // Lose Hearts + Set Wager
+            lifestealData.setValue(LSConstants.HEARTS_WAGERD, heartWager);
+            lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, proposedHealth-20);
+            lifestealData.refreshHealth(false);
+            // Confirmation Message
+            if (heartWager==1) {sendScreenMessage("You wagered 1 heart.");}
+            else               {sendScreenMessage("You wagered " + heartWager + " hearts.");}
+        });
+
+    }
+
+    // Get wager
+    @Override
+    public int getWager() {
+        LivingEntity playerEntity = this;
+        Optional<LSData> optionalLSData = LSData.get(playerEntity);
+        return optionalLSData.map(lifestealData -> {
+            return (int)lifestealData.getValue(LSConstants.HEARTS_WAGERD);
+        }).orElse(0);
+    }
+
     // API end point
     // Remove <heartCount> hearts from this player
     @Override
     public void loseHearts(int heartCount) {
         LivingEntity playerEntity = this;
         LSData.get(playerEntity).ifPresent(lifestealData -> {
-            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
-            int proposedHealth = 20 + HeartDifference - heartCount*2;
+            int currentHealth = 20 + (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int proposedHealth = currentHealth - heartCount*2;
 
-            // Validate Decrease...
+            // Sanitize Decrease (just kill them?)
             if (proposedHealth < 0){
-                proposedHealth = 0; // THIS SHOULD NEVER HAPPEN...but kill them
+                proposedHealth = 0;
             }
             // Lose Hearts
             lifestealData.setValue(LSConstants.HEALTH_DIFFERENCE, proposedHealth-20);
@@ -117,9 +175,9 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         LivingEntity playerEntity = this;
 
         LSData.get(playerEntity).ifPresent(lifestealData -> {
-            int HeartDifference = lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
-            int proposedHealth = 20 + HeartDifference + heartCount*2;
-            // Validate Increase
+            int currentHealth = 20 + (int)lifestealData.getValue(LSConstants.HEALTH_DIFFERENCE);
+            int proposedHealth = currentHealth + heartCount*2;
+            // Sanitize Increase
             if ((maximumAllowedHP != -1) && (proposedHealth > maximumAllowedHP)){
                 LSUtil.ripHeartCrystalFromPlayer(playerEntity, heartCount);
                 return;
@@ -147,11 +205,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
     // CAN OVERWRITE killerEntity (for 3rd party mods to simulate kill...)
     @Override
     public void playerDeathTransfer(LivingEntity killerEntityOverride,  boolean notify){
-        final int maximumHealthLoseable = LifeSteal.config.maximumHealthLoseable.get();
         final int startingHitPointDifference = LifeSteal.config.startingHealthDifference.get();
-        // NOT USING THIS (dynamic system)
-        final int amountOfHealthLostUponLossConfig = LifeSteal.config.amountOfHealthLostUponLoss.get();
-        final int extraHeartDropPercentConfig = LifeSteal.config.extraHeartDropPercent.get();
         final boolean playersGainHeartsifKillednoHeart = LifeSteal.config.playersGainHeartsifKillednoHeart.get();
         final boolean disableLifesteal = LifeSteal.config.disableLifesteal.get();
         final boolean loseHeartsWhenKilledByPlayer = LifeSteal.config.loseHeartsWhenKilledByPlayer.get();
@@ -180,12 +234,7 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
 
             // CALCULATE HEARTS DROPPED (if the person who died has lots of MAXHP, they will drop more hearts)
             // (drop 1 extra heart for every 10 max HP --> 2 health == 1 heart)
-            int healthDrop = Math.round((HeartDifference+20f)/2f*extraHeartDropPercentConfig/100f);
-            healthDrop *= 2;
-            healthDrop += amountOfHealthLostUponLossConfig;
-            if ((maximumHealthLoseable!= -1) && (maximumHealthLoseable > healthDrop)) {
-                healthDrop = maximumHealthLoseable;
-            }
+            int healthDrop = suggestWager() * 2;
             int heartsDropped = healthDrop / 2;
 
             // no heart loss if player is weakling

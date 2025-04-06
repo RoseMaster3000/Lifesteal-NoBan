@@ -10,4 +10,7 @@ public interface PlayerImpl {
     boolean hasHearts(int heartCount);
     void loseHearts(int heartCount);
     void gainHearts(int heartCount);
+    int suggestWager();
+    void setWager(int heartCount);
+    int getWager();
 }
