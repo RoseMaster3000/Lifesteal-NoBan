@@ -62,9 +62,11 @@ public class LSEvents {
             Optional<LSData> newDataOptional = LSData.get(player);
             if (newDataOptional.isPresent()) {
                 LSData newData = newDataOptional.get();
+                // enforce health maximum
                 newData.refreshHealth(false);
+                // reset wager
+                // newData.setValue(LSConstants.HEARTS_WAGERD, -1);
             }
-
         });
 
 
