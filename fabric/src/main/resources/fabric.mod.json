@@ -33,9 +33,6 @@
       "mc.mian.lifesteal.data.fabric.LSComponents"
     ]
   },
-  "mixins": [
-    "${mod_id}-common.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric": ">=${fabric_api_version}",
