@@ -65,7 +65,7 @@ public class LSEvents {
                 // enforce health maximum
                 newData.refreshHealth(false);
                 // reset wager
-                // newData.setValue(LSConstants.HEARTS_WAGERD, -1);
+                newData.setValue(LSConstants.HEARTS_WAGERD, -1);
             }
         });
 
