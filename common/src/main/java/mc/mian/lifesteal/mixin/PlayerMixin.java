@@ -2,6 +2,7 @@ package mc.mian.lifesteal.mixin;
 
 import mc.mian.lifesteal.LifeSteal;
 import mc.mian.lifesteal.api.PlayerImpl;
+import mc.mian.lifesteal.common.item.LSItems;
 import mc.mian.lifesteal.data.LSData;
 import mc.mian.lifesteal.util.LSConstants;
 import mc.mian.lifesteal.util.LSUtil;
@@ -12,6 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -134,6 +136,71 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerImpl {
         });
 
     }
+
+    // adjust heart buy in (for mahjong points)
+    // return False if fails (player did not enough hearts)
+    @Override
+    public boolean setJonger(int heartCount) {
+        LivingEntity playerEntity = this;
+        Optional<LSData> optionalLSData = LSData.get(playerEntity);
+        return optionalLSData.map(lifestealData -> {
+            int heartSunk = lifestealData.getValue(LSConstants.HEARTS_JONGERED);
+            int heartDelta = heartCount - heartSunk;
+
+            // Heart count is good, nothing needed
+            if (heartDelta == 0) {
+                return true;
+            }
+            // Need less hearts (refund)
+            else if (heartDelta < 0){
+                gainHearts(-heartDelta);
+                lifestealData.setValue(LSConstants.HEARTS_JONGERED, heartCount);
+                return true;
+            }
+            // Need more hearts AND you have them!
+            else if (hasHearts(heartDelta)){
+                loseHearts(heartDelta);
+                lifestealData.setValue(LSConstants.HEARTS_JONGERED, heartCount);
+                return true;
+            }
+            // Need more hearts (you DON'T have them...)
+            else {
+                gainHearts(heartSunk);
+                lifestealData.setValue(LSConstants.HEARTS_JONGERED, 0);
+                return false;
+            }
+        }).orElse(false);
+
+    }
+
+    // Once mahjong points have been handed out, reset,
+    @Override
+    public void resetJonger() {
+        LivingEntity playerEntity = this;
+        LSData.get(playerEntity).ifPresent(lifestealData -> {
+            lifestealData.setValue(LSConstants.HEARTS_JONGERED, 0);
+        });
+    }
+
+    // Give Crystal Cores (heart fragments) to player (used for mahjong payments)
+    @Override
+    public void giveFragments(int count) {
+        // Make Sure this is ServerPlayer
+        if ((Object) this instanceof ServerPlayer serverPlayer) {
+            // Validate count
+            if (count <= 0) {return;}
+
+            // Create the ItemStack for the Crystal Core
+            ItemStack crystalStack = new ItemStack(LSItems.CRYSTAL_CORE.get(), count);
+            boolean addedSuccessfully = serverPlayer.getInventory().add(crystalStack);
+
+            // If the stack couldn't be added (inventory full)
+            if (!addedSuccessfully) {
+                serverPlayer.drop(crystalStack, false, false);
+            }
+        }
+    }
+
 
     // Get wager
     @Override

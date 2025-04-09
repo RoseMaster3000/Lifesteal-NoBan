@@ -13,4 +13,7 @@ public interface PlayerImpl {
     int suggestWager();
     void setWager(int heartCount);
     int getWager();
+    boolean setJonger(int heartCount);
+    void resetJonger();
+    void giveFragments(int count);
 }

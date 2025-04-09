@@ -321,6 +321,8 @@ public class LSData implements ILSData {
         tag.putInt(LSConstants.HEALTH_DIFFERENCE.getPath(), getValue(LSConstants.HEALTH_DIFFERENCE));
         tag.putLong(LSConstants.TIME_KILLED.getPath(), getValue(LSConstants.TIME_KILLED));
         tag.putInt(LSConstants.HEARTS_DROPPED.getPath(), getValue(LSConstants.HEARTS_DROPPED));
+        tag.putInt(LSConstants.HEARTS_WAGERD.getPath(), getValue(LSConstants.HEARTS_WAGERD));
+        tag.putInt(LSConstants.HEARTS_JONGERED.getPath(), getValue(LSConstants.HEARTS_JONGERED));
         return tag;
     }
 
@@ -329,5 +331,7 @@ public class LSData implements ILSData {
         setValue(LSConstants.HEALTH_DIFFERENCE, tag.getInt(LSConstants.HEALTH_DIFFERENCE.getPath()));
         setValue(LSConstants.TIME_KILLED, tag.getLong(LSConstants.TIME_KILLED.getPath()));
         setValue(LSConstants.HEARTS_DROPPED, tag.getInt(LSConstants.HEARTS_DROPPED.getPath()));
+        setValue(LSConstants.HEARTS_WAGERD, tag.getInt(LSConstants.HEARTS_WAGERD.getPath()));
+        setValue(LSConstants.HEARTS_JONGERED, tag.getInt(LSConstants.HEARTS_JONGERED.getPath()));
     }
 }

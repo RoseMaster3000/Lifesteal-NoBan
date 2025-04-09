@@ -7,8 +7,7 @@
     "LivingMixin",
     "PlayerMixin",
     "ServerLevelMixin",
-    "BEMixin",
-    "LivingEntityRendererMixin"
+    "BEMixin"
   ],
   "client": [
   ],
